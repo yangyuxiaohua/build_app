@@ -1,0 +1,133 @@
+{
+
+	/* 使用uView配置 */
+	"easycom": {
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [
+		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "",
+				"navigationBarBackgroundColor": "#F5F5F9",
+				"app-plus": {
+					"titleNView": {
+						"autoBackButton": "false"
+					}
+				}
+
+			}
+		},
+		{
+			"path": "pages/resign/Resign",
+			"style": {
+				"navigationBarTitleText": "用户注册"
+			}
+		},
+		{
+			"path": "pages/ProjectInfo/ProjectInfo",
+			"style": {
+				"navigationBarTitleText": "工程项目"
+			}
+		},
+		{
+			"path": "pages/Record/Record",
+			"style": {
+				"navigationBarTitleText": "验收记录"
+			}
+		}, {
+			"path": "pages/Problem/Problem",
+			"style": {
+				"navigationBarTitleText": "验收常见问题"
+			}
+		}, {
+			"path": "pages/buildInfo/BuildInfo",
+			"style": {
+				"navigationBarTitleText": "建筑信息"
+			}
+		},
+		{
+			"path": "pages/Require/Require",
+			"style": {
+				"navigationBarTitleText": "验收要求"
+			}
+		},
+		{
+			"path": "pages/acceptMethods/AcceptMethods",
+			"style": {
+				"navigationBarTitleText": "验收方法"
+			}
+		}, {
+			"path": "pages/rules/Rule",
+			"style": {
+				"navigationBarTitleText": "验收规则"
+			}
+		},
+		{
+			"path": "pages/mainpage/home/home",
+			"style": {
+				"navigationBarTitleText": "建设工程消防验收"
+			}
+		},
+		// {
+		// 	"path": "pages/mainpage/engin/engin",
+		// 	"style": {
+		// 		"navigationBarTitleText": "工程项目"
+		// 	}
+		// },
+		{
+			"path": "pages/mainpage/assess/assess",
+			"style": {
+				"navigationBarTitleText": "现场验收",
+				"enablePullDownRefresh": true, //设置为true表示当前页面开启下拉刷新
+				"backgroundTextStyle": "dark" //下拉 loading 的样式，仅支持 dark/light
+
+			}
+		},
+		{
+			"path": "pages/mainpage/usermes/usermes",
+			"style": {
+				"navigationBarTitleText": "个人信息"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "--",
+		"navigationBarBackgroundColor": "#0E8AFE",
+		"backgroundColor": "#00aa00"
+	},
+	"tabBar": {
+		"borderStyle": "black",
+		// "backgroundColor": "#343440",
+		"backgroundColor": "#0E8AFE",
+		"color": "#000",
+		"selectedColor": "#fff",
+		"list": [{
+				"pagePath": "pages/mainpage/home/home",
+				"iconPath": "static/img/tabbar/home.png",
+				"selectedIconPath": "static/img/tabbar/homeactive.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/ProjectInfo/ProjectInfo",
+				"iconPath": "static/img/tabbar/engin.png",
+				"selectedIconPath": "static/img/tabbar/enginactive.png",
+				"text": "工程项目"
+			},
+			{
+				"pagePath": "pages/mainpage/assess/assess",
+				"iconPath": "static/img/tabbar/news.png",
+				"selectedIconPath": "static/img/tabbar/newsactive.png",
+				"text": "现场验收"
+			},
+			{
+				"pagePath": "pages/mainpage/usermes/usermes",
+				"iconPath": "static/img/tabbar/me.png",
+				"selectedIconPath": "static/img/tabbar/meactive.png",
+				"text": "我的信息"
+			}
+		]
+	}
+}
