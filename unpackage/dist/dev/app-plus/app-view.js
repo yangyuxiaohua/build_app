@@ -8522,7 +8522,8 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("切换")]
+                [_c("u-icon", { attrs: { _i: 44 } })],
+                1
               )
             ],
             1
@@ -8532,17 +8533,17 @@ var render = function() {
       ),
       _c(
         "v-uni-view",
-        { staticClass: _vm._$g(44, "sc"), attrs: { _i: 44 } },
+        { staticClass: _vm._$g(45, "sc"), attrs: { _i: 45 } },
         [
           _c(
             "u-grid",
-            { attrs: { _i: 45 } },
-            _vm._l(_vm._$g(46, "f"), function(item, index, $20, $30) {
+            { attrs: { _i: 46 } },
+            _vm._l(_vm._$g(47, "f"), function(item, index, $20, $30) {
               return _c(
                 "u-grid-item",
                 {
                   key: item,
-                  attrs: { _i: "46-" + $30 },
+                  attrs: { _i: "47-" + $30 },
                   on: {
                     click: function($event) {
                       return _vm.$handleViewEvent($event)
@@ -8557,18 +8558,18 @@ var render = function() {
                       "margin-bottom": "20rpx"
                     },
                     attrs: {
-                      src: _vm._$g("47-" + $30, "a-src"),
+                      src: _vm._$g("48-" + $30, "a-src"),
                       mode: "",
-                      _i: "47-" + $30
+                      _i: "48-" + $30
                     }
                   }),
                   _c(
                     "v-uni-view",
                     {
-                      staticClass: _vm._$g("48-" + $30, "sc"),
-                      attrs: { _i: "48-" + $30 }
+                      staticClass: _vm._$g("49-" + $30, "sc"),
+                      attrs: { _i: "49-" + $30 }
                     },
-                    [_vm._v(_vm._$g("48-" + $30, "t0-0"))]
+                    [_vm._v(_vm._$g("49-" + $30, "t0-0"))]
                   )
                 ],
                 1

@@ -11,6 +11,9 @@ export default {
 			cid: '', // 选中的变色
 		}
 	},
+	onLoad(){
+		uni.removeStorageSync('checkContent')
+	},
 	onShow() {
 		// console.log(uni.getStorageSync('backAssess'))
 		if(uni.getStorageSync('backAssess')){
@@ -59,18 +62,16 @@ export default {
 		uni.removeStorageSync('assess')
 	},
 	onPullDownRefresh(){
-		// this.accordion = []
-		// this.getProjects()
-		// console.log(uni.getStorageSync('checkContent'))
-		// console.log(uni.getStorageSync('projectInfo'))
-		// console.log(this.titleType)
-		let {standardPrimaryTitleId,standardSecondaryTitleId} = uni.getStorageSync('checkContent')
-		// let standardChecklistId = uni.getStorageSync('checkContent').id
-		// let standardChecklistId = uni.getStorageSync('checkContent').id
+		if(uni.getStorageSync('checkContent')){
+			let {standardPrimaryTitleId,standardSecondaryTitleId} = uni.getStorageSync('checkContent')
 		let standardChecklistId = uni.getStorageSync('checkContent').id
 		let id = this.splitStr(uni.getStorageSync('projectInfo'))[0]
-		console.log(standardPrimaryTitleId,standardSecondaryTitleId,standardChecklistId,id)
+		// console.log(standardPrimaryTitleId,standardSecondaryTitleId,standardChecklistId,id)
 		this.RefreshReduction(id,standardPrimaryTitleId,standardSecondaryTitleId,standardChecklistId)
+		}else{
+			uni.stopPullDownRefresh();
+		}
+		
 	},
 	methods: {
 		async getList(id) { //请求数据
@@ -120,7 +121,6 @@ export default {
 						})
 					}
 				})
-				// uni.stopPullDownRefresh();
 			}
 
 		},

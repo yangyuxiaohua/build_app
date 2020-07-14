@@ -66,7 +66,7 @@
 			</view>
 			<view class="projectChoseText">
 				<text class="text1">选择需验收的建设工程</text>
-				<text class="text2" @click="show = true">切换</text>
+				<text class="text2" @click="show = true"><u-icon name="arrow-rightward" color="#009ED6" size="36"></u-icon></text>
 			</view>
 		</view>
 		<view class="homeMenu">
