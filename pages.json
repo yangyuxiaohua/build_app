@@ -22,7 +22,7 @@
 		{
 			"path": "pages/resign/Resign",
 			"style": {
-				"navigationBarTitleText": "用户注册"
+				"navigationBarTitleText": "单位注册"
 			}
 		},
 		{

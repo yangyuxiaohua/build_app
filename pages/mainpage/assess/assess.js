@@ -20,11 +20,11 @@ export default {
 		}else{
 		this.accordion = []
 		this.getProjects()
-		// this.show = true
 		// console.log("新进的")
 		
 		}
-		let titleText
+		// ======================================================
+		let titleText;
 		if(uni.getStorageSync('assess')){
 		 titleText= uni.getStorageSync('assess')
 			
@@ -59,8 +59,18 @@ export default {
 		uni.removeStorageSync('assess')
 	},
 	onPullDownRefresh(){
-		this.accordion = []
-		this.getProjects()
+		// this.accordion = []
+		// this.getProjects()
+		// console.log(uni.getStorageSync('checkContent'))
+		// console.log(uni.getStorageSync('projectInfo'))
+		// console.log(this.titleType)
+		let {standardPrimaryTitleId,standardSecondaryTitleId} = uni.getStorageSync('checkContent')
+		// let standardChecklistId = uni.getStorageSync('checkContent').id
+		// let standardChecklistId = uni.getStorageSync('checkContent').id
+		let standardChecklistId = uni.getStorageSync('checkContent').id
+		let id = this.splitStr(uni.getStorageSync('projectInfo'))[0]
+		console.log(standardPrimaryTitleId,standardSecondaryTitleId,standardChecklistId,id)
+		this.RefreshReduction(id,standardPrimaryTitleId,standardSecondaryTitleId,standardChecklistId)
 	},
 	methods: {
 		async getList(id) { //请求数据
@@ -69,7 +79,7 @@ export default {
 				type: this.titleType
 			}
 			let res = await this.$api.POST_getDocumentByProjectId(param)
-			// console.log(res)
+			console.log(res)
 			if (res.httpStatus == 200) {
 				this.accordion = res.result.tasksWithEvaluation.primaryTitles.map(item => {
 					// console.log(item)
@@ -88,6 +98,7 @@ export default {
 								show2: false,
 								id: i.standardSecondaryTitleId,
 								children: i.checklistList.map(j => {
+									// console.log(j)
 									return {
 										standardId: j.standardId,
 										title: j.content,
@@ -99,7 +110,9 @@ export default {
 										remark: j.remark,
 										samplingRequires: j.samplingRequires,
 										show: false,
-										categoryCode:res.result.tasksWithEvaluation.categoryCode
+										categoryCode:res.result.tasksWithEvaluation.categoryCode,
+										standardPrimaryTitleId:j.standardPrimaryId,
+										standardSecondaryTitleId:j.standardSecondaryId
 									}
 
 								})
@@ -107,6 +120,7 @@ export default {
 						})
 					}
 				})
+				// uni.stopPullDownRefresh();
 			}
 
 		},
@@ -140,10 +154,9 @@ export default {
 						}, ..._this.projectList]
 						// _this.projectId = _this.projectList[0].value
 						// _this.getList(_this.splitStr(_this.projectId)[0])
-						_this.projectName = _this.projectList[0].label
+						// _this.projectName = _this.projectList[0].label
 						_this.show = true
 						//关闭刷新
-						uni.stopPullDownRefresh();
 						// uni.setStorage({
 						// 	key: 'projectInfo',
 						// 	data: _this.projectId
@@ -191,7 +204,7 @@ export default {
 		},
 		clickLevel(num, i) {
 			this.cid = i.id
-			console.log(this.cid)
+			// console.log(this.cid)
 			if (num == 1) {
 				this.accordion.forEach(item => {
 					if (item.id == i.id) {
@@ -245,5 +258,56 @@ export default {
 				})
 			}
 		},
+		// 返回刷新状态还原
+		async RefreshReduction(id,standardPrimaryTitleId,standardSecondaryTitleId,standardChecklistId){
+			let param = {
+				projectId: id,
+				type: this.titleType
+			}
+			let res = await this.$api.POST_getDocumentByProjectId(param)
+			// console.log(res)
+			if (res.httpStatus == 200) {
+				this.accordion = res.result.tasksWithEvaluation.primaryTitles.map(item => {
+					return {
+						num: `${item.finishTasksNum}/${item.totalTasksNum}`,
+						title: item.titleName,
+						show1: item.standardPrimaryTitleId == standardPrimaryTitleId?false:true,
+						show2: item.standardPrimaryTitleId ==standardPrimaryTitleId?true:false,
+						id: item.standardPrimaryTitleId,
+						children: item.secondaryTitles.map(i => {
+							return {
+								num: `${i.finishTasksNum}/${i.totalTasksNum}`,
+								title: i.titleName,
+								show:i.standardPrimaryTitleId == standardPrimaryTitleId?true:false,
+								show1: i.standardSecondaryTitleId==standardSecondaryTitleId?false:true,
+								show2: i.standardSecondaryTitleId==standardSecondaryTitleId?true:false,
+								id: i.standardSecondaryTitleId,
+								children: i.checklistList.map(j => {
+									// console.log(j)
+									return {
+										standardId: j.standardId,
+										title: j.content,
+										id: j.standardChecklistId,
+										checkContent: j.checkContent,
+										standardId: j.standardId,
+										technologyRequires: j.technologyRequires,
+										rules: j.rules,
+										remark: j.remark,
+										samplingRequires: j.samplingRequires,
+										show:j.standardSecondaryId==standardSecondaryTitleId?true:false,
+										categoryCode:res.result.tasksWithEvaluation.categoryCode,
+										standardPrimaryTitleId:j.standardPrimaryId,
+										standardSecondaryTitleId:j.standardSecondaryId
+									}
+			
+								})
+							}
+						})
+					}
+				})
+				// console.log(11111111111)
+				uni.stopPullDownRefresh();
+			}
+		}
 	}
 }

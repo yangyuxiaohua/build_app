@@ -23,5 +23,6 @@ export default {
 		POST_addUpload:'app/record/upload/add' ,//添加上传验收文件地址信息
 		POST_getRecordByChecklistId:'app/record/getRecordByCheckListId' ,//获取填写的现场评定记录 - 包含附件
 		POST_updatePwd:'user/updateUser',//修改密码
+		POST_Register:'register',//注册
 	}
 }

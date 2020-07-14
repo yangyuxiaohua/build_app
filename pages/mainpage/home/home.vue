@@ -37,7 +37,7 @@
 			</view>
 			<view class="projectChoseText">
 				<text class="text1">{{projectName}}</text>
-				<text class="text2" @click="show = true">切换</text>
+				<text class="text2" @click="show = true"><u-icon name="arrow-rightward" color="#009ED6" size="36"></u-icon></text>
 			</view>
 		</view>
 		<view class="projectChose" v-show="content2">
@@ -99,7 +99,7 @@
 
 			image {
 				width: 100%;
-				height: 350rpx;
+				height: 300rpx;
 			}
 		}
 

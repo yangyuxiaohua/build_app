@@ -10,7 +10,7 @@ export default {
 			// list: [{name: '账户密码登录'}],
 			current: 0,
 			codeText: '',
-			autologin: false
+			autologin: false,
 		};
 	},
 	onLoad() {
