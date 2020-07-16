@@ -15,12 +15,12 @@ export default {
 	},
 	onLoad() {
 		// uni.clearStorage()
-		uni.getStorage({
-			key:'loginInfo',
-			success(res) {
-				console.log(res)
-			}
-		})
+		// uni.getStorage({
+		// 	key:'loginInfo',
+		// 	success(res) {
+		// 		console.log(res)
+		// 	}
+		// })
 	},
 	onShow(){
 		console.log(uni.getStorageInfoSync())
@@ -29,6 +29,8 @@ export default {
 		if(this.autologin){
 			let token = uni.getStorageSync('loginInfo')
 			if(token){
+				uni.clearStorageSync()
+				uni.setStorageSync('autoLogin', this.autologin)
 				uni.switchTab({
 					url: '/pages/mainpage/home/home'
 				});
@@ -40,23 +42,7 @@ export default {
 	methods: {
 		//自动登录
 		autoLogin(){
-			console.log(this.autologin)
-			// console.log(111111111)
-			// try {
-			    // const value = uni.getStorageSync('storage_key');
-				
-			 //    if (value) {
-			 //        console.log(value);
-			 //    }else{
 					uni.setStorageSync('autoLogin', this.autologin)
-				 // if(this.autologin){
-				 // }else{
-					//  uni.setStorageSync('autoLogin', false)
-				 // }
-				// }
-			// } catch (e) {
-			    // console.log(22222222)
-			// }
 		},
 		async login() {
 			let param = {

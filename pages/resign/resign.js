@@ -39,6 +39,11 @@ export default {
 							let res = JSON.parse(uploadFileRes.data)
 							if (res.httpStatus == 200) {
 								this.form.businessLicense = res.result
+								this.$refs.uToast.show({
+									title: '上传成功',
+									type: 'success',
+									duration: 3000
+								})
 							} else {
 								this.$refs.uToast.show({
 									title: '上传失败，请检查网络，文件大小，文件格式',

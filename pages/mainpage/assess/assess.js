@@ -9,35 +9,41 @@ export default {
 			titleText: '',
 			titleType: 0,
 			cid: '', // 选中的变色
+			// initF:'', //保存回来的头部
 		}
 	},
-	onLoad(){
+	onLoad() {
 		uni.removeStorageSync('checkContent')
 	},
 	onShow() {
 		// console.log(uni.getStorageSync('backAssess'))
-		if(uni.getStorageSync('backAssess')){
+		// let returnAssessFlag;
+		let titleText;
+		if (uni.getStorageSync('backAssess')) {
 			// console.log('返回的')
+			// returnAssessFlag 
 			this.show = false
 			uni.removeStorageSync('backAssess')
-		}else{
-			this.projectName= ''
-		this.accordion = []
-		this.getProjects()
-		this.cid=''
-		// console.log("新进的")
-		
+			titleText = uni.getStorageSync('returnAssess')
+			uni.removeStorageSync('returnAssess')
+		} else {
+			this.projectName = ''
+			this.accordion = []
+			this.getProjects()
+			this.cid = ''
+			// console.log("新进的")
+			if (uni.getStorageSync('assess')) {
+				titleText = uni.getStorageSync('assess')
+				uni.removeStorageSync('assess')
+				console.log('点进来的')
+			} else {
+				titleText = uni.getStorageSync('defaultAssess')
+				console.log("默认进来的")
+			}
 		}
 		// ======================================================
-		let titleText;
-		if(uni.getStorageSync('assess')){
-		 titleText= uni.getStorageSync('assess')
-			uni.removeStorageSync('assess')
-			console.log('点进来的')
-		}else{
-			 titleText= uni.getStorageSync('defaultAssess')
-			 console.log("默认进来的")
-		}
+
+
 		switch (titleText) {
 			case 'ziliao':
 				this.titleText = '资料评审'
@@ -58,20 +64,23 @@ export default {
 		uni.setNavigationBarTitle({
 			title: this.titleText
 		});
-		// uni.setStorageSync('defaultAssess',titleText)
+		uni.setStorageSync('returnAssess', titleText)
 		// uni.removeStorageSync('assess')
 	},
-	onPullDownRefresh(){
-		if(uni.getStorageSync('checkContent')){
-			let {standardPrimaryTitleId,standardSecondaryTitleId} = uni.getStorageSync('checkContent')
-		let standardChecklistId = uni.getStorageSync('checkContent').id
-		let id = this.splitStr(uni.getStorageSync('projectInfo'))[0]
-		// console.log(standardPrimaryTitleId,standardSecondaryTitleId,standardChecklistId,id)
-		this.RefreshReduction(id,standardPrimaryTitleId,standardSecondaryTitleId,standardChecklistId)
-		}else{
+	onPullDownRefresh() {
+		if (uni.getStorageSync('checkContent')) {
+			let {
+				standardPrimaryTitleId,
+				standardSecondaryTitleId
+			} = uni.getStorageSync('checkContent')
+			let standardChecklistId = uni.getStorageSync('checkContent').id
+			let id = this.splitStr(uni.getStorageSync('projectInfo'))[0]
+
+			this.RefreshReduction(id, standardPrimaryTitleId, standardSecondaryTitleId, standardChecklistId)
+		} else {
 			uni.stopPullDownRefresh();
 		}
-		
+
 	},
 	methods: {
 		async getList(id) { //请求数据
@@ -102,7 +111,7 @@ export default {
 									// console.log(j.checkTypeName)
 									return {
 										standardId: j.standardId,
-										title: j.content+'('+ j.checkTypeName+')' ,
+										title: j.content + '(' + j.checkTypeName + ')',
 										id: j.standardChecklistId,
 										checkContent: j.checkContent,
 										standardId: j.standardId,
@@ -111,9 +120,9 @@ export default {
 										remark: j.remark,
 										samplingRequires: j.samplingRequires,
 										show: false,
-										categoryCode:res.result.tasksWithEvaluation.categoryCode,
-										standardPrimaryTitleId:j.standardPrimaryId,
-										standardSecondaryTitleId:j.standardSecondaryId
+										categoryCode: res.result.tasksWithEvaluation.categoryCode,
+										standardPrimaryTitleId: j.standardPrimaryId,
+										standardSecondaryTitleId: j.standardSecondaryId
 									}
 
 								})
@@ -259,7 +268,7 @@ export default {
 			}
 		},
 		// 返回刷新状态还原
-		async RefreshReduction(id,standardPrimaryTitleId,standardSecondaryTitleId,standardChecklistId){
+		async RefreshReduction(id, standardPrimaryTitleId, standardSecondaryTitleId, standardChecklistId) {
 			let param = {
 				projectId: id,
 				type: this.titleType
@@ -271,16 +280,16 @@ export default {
 					return {
 						num: `${item.finishTasksNum}/${item.totalTasksNum}`,
 						title: item.titleName,
-						show1: item.standardPrimaryTitleId == standardPrimaryTitleId?false:true,
-						show2: item.standardPrimaryTitleId ==standardPrimaryTitleId?true:false,
+						show1: item.standardPrimaryTitleId == standardPrimaryTitleId ? false : true,
+						show2: item.standardPrimaryTitleId == standardPrimaryTitleId ? true : false,
 						id: item.standardPrimaryTitleId,
 						children: item.secondaryTitles.map(i => {
 							return {
 								num: `${i.finishTasksNum}/${i.totalTasksNum}`,
 								title: i.titleName,
-								show:i.standardPrimaryTitleId == standardPrimaryTitleId?true:false,
-								show1: i.standardSecondaryTitleId==standardSecondaryTitleId?false:true,
-								show2: i.standardSecondaryTitleId==standardSecondaryTitleId?true:false,
+								show: i.standardPrimaryTitleId == standardPrimaryTitleId ? true : false,
+								show1: i.standardSecondaryTitleId == standardSecondaryTitleId ? false : true,
+								show2: i.standardSecondaryTitleId == standardSecondaryTitleId ? true : false,
 								id: i.standardSecondaryTitleId,
 								children: i.checklistList.map(j => {
 									// console.log(j)
@@ -294,12 +303,12 @@ export default {
 										rules: j.rules,
 										remark: j.remark,
 										samplingRequires: j.samplingRequires,
-										show:j.standardSecondaryId==standardSecondaryTitleId?true:false,
-										categoryCode:res.result.tasksWithEvaluation.categoryCode,
-										standardPrimaryTitleId:j.standardPrimaryId,
-										standardSecondaryTitleId:j.standardSecondaryId
+										show: j.standardSecondaryId == standardSecondaryTitleId ? true : false,
+										categoryCode: res.result.tasksWithEvaluation.categoryCode,
+										standardPrimaryTitleId: j.standardPrimaryId,
+										standardSecondaryTitleId: j.standardSecondaryId
 									}
-			
+
 								})
 							}
 						})

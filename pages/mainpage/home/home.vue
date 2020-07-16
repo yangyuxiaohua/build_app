@@ -35,10 +35,10 @@
 
 				</u-row>
 			</view>
-			<view class="projectChoseText" @click="show = true">
+		<!-- 	<view class="projectChoseText" @click="show = true">
 				<text class="text1">{{projectName}}</text>
 				<text class="text2"><u-icon name="arrow-rightward" color="#009ED6" size="36"></u-icon></text>
-			</view>
+			</view> -->
 		</view>
 		<view class="projectChose" v-show="content2">
 			<view class="statisticalBox">

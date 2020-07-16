@@ -57,10 +57,9 @@ export default {
 	},
 	onLoad() {
 		this.getUserInformation()
-		this.getRole()
-
 	},
 	onShow() {
+		this.getRole()
 		// uni.removeStorageSync('assess')
 	},
 	methods: {

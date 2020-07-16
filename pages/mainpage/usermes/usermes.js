@@ -41,7 +41,7 @@ export default {
 	},
 	methods: {
 		login() {
-			let _this = this
+			// let _this = this
 			uni.clearStorageSync()
 			// console.log(this.autoLogin)
 			// uni.setStorageSync('loginInfo', this.token)

@@ -1,8 +1,9 @@
 <template>
 	<view class="resign_content">
+		<u-toast ref="uToast" />
 		<u-modal v-model="show" :content="content" :title = "title" :title-style='titleStyle' :content-style='contentStyle'></u-modal>
 		<u-form :model="form" ref="uForm">
-			<u-form-item label="提示：业务办理将使用该注册信息，您需要确保填写的信息真实无误!" style="font-size: 12px; padding-left:10rpx ; line-height: 30rpx;"
+			<u-form-item label="提示：业务办理将使用该注册信息，请确保填写的信息真实无误!" style="font-size: 12px; padding-left:10rpx ; line-height: 30rpx;"
 			 label-width='100%'>
 			</u-form-item>
 			<u-form-item label="企业名称:" label-width='150' label-align='right'>
