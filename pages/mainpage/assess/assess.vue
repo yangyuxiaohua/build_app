@@ -46,13 +46,13 @@
 					</u-col>
 					<u-col span="1">
 						<view style="text-align: center;">
-							<u-icon name="arrow-down" color="#a0cfff" size="28" v-show="item.show1"></u-icon>
-							<u-icon name="arrow-up" color="#a0cfff" size="28" v-show="item.show2"></u-icon>
+							<u-icon name="arrow-down" color="#a0cfff" size="28" v-if="item.show1"></u-icon>
+							<u-icon name="arrow-up" color="#a0cfff" size="28" v-else></u-icon>
 						</view>
 					</u-col>
 				</u-row>
 			</view>
-			<view class="menuLevel2" v-for="(i,index2) in item.children " v-show="i.show">
+			<view class="menuLevel2" v-for="(i,index2) in item.children " v-if="i.show">
 				<view class="menuLevel2Content" @click="clickLevel(2,i)" :class="{chosedMenu:cid==i.id}">
 					<u-row gutter="16">
 						<u-col span="9">
@@ -67,13 +67,13 @@
 						</u-col>
 						<u-col span="1">
 							<view style="text-align: center;">
-								<u-icon name="arrow-down" color="#a0cfff" size="28" v-show="i.show1"></u-icon>
-								<u-icon name="arrow-up" color="#a0cfff" size="28" v-show="i.show2"></u-icon>
+								<u-icon name="arrow-down" color="#a0cfff" size="28" v-if="i.show1"></u-icon>
+								<u-icon name="arrow-up" color="#a0cfff" size="28" v-else></u-icon>
 							</view>
 						</u-col>
 					</u-row>
 				</view>
-				<view class="menuLevel3" v-for="(j,index3) in i.children" v-show="j.show">
+				<view class="menuLevel3" v-for="(j,index3) in i.children" v-if="j.show">
 					<view class="menuLevel3Content" @click="clickLevel(3,j)" :class="{chosedMenu:cid==j.id}">
 						<u-row gutter="16">
 							<u-col span="11">

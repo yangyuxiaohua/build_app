@@ -6,8 +6,8 @@ export default {
 			show: false,
 			projectId: '', //当前选中的projectId
 			projectName: '',
-			titleText: '现场评定',
-			titleType: 15,
+			titleText: '',
+			titleType: 0,
 			cid: '', // 选中的变色
 		}
 	},
@@ -21,8 +21,10 @@ export default {
 			this.show = false
 			uni.removeStorageSync('backAssess')
 		}else{
+			this.projectName= ''
 		this.accordion = []
 		this.getProjects()
+		this.cid=''
 		// console.log("新进的")
 		
 		}
@@ -30,9 +32,11 @@ export default {
 		let titleText;
 		if(uni.getStorageSync('assess')){
 		 titleText= uni.getStorageSync('assess')
-			
+			uni.removeStorageSync('assess')
+			console.log('点进来的')
 		}else{
 			 titleText= uni.getStorageSync('defaultAssess')
+			 console.log("默认进来的")
 		}
 		switch (titleText) {
 			case 'ziliao':
@@ -47,10 +51,6 @@ export default {
 				this.titleText = '消防检测'
 				this.titleType = 10
 				break;
-			// case 'xianchang':
-			// 	this.titleText = '现场评定'
-			// 	this.titleType = 15
-			// 	break;
 			default:
 				this.titleText = '现场评定'
 				this.titleType = 15
@@ -58,8 +58,8 @@ export default {
 		uni.setNavigationBarTitle({
 			title: this.titleText
 		});
-		uni.setStorageSync('defaultAssess',titleText)
-		uni.removeStorageSync('assess')
+		// uni.setStorageSync('defaultAssess',titleText)
+		// uni.removeStorageSync('assess')
 	},
 	onPullDownRefresh(){
 		if(uni.getStorageSync('checkContent')){
@@ -80,7 +80,7 @@ export default {
 				type: this.titleType
 			}
 			let res = await this.$api.POST_getDocumentByProjectId(param)
-			console.log(res)
+			// console.log(res)
 			if (res.httpStatus == 200) {
 				this.accordion = res.result.tasksWithEvaluation.primaryTitles.map(item => {
 					// console.log(item)
@@ -88,7 +88,7 @@ export default {
 						num: `${item.finishTasksNum}/${item.totalTasksNum}`,
 						title: item.titleName,
 						show1: true,
-						show2: false,
+						// show2: false,
 						id: item.standardPrimaryTitleId,
 						children: item.secondaryTitles.map(i => {
 							return {
@@ -96,13 +96,13 @@ export default {
 								title: i.titleName,
 								show: false,
 								show1: false,
-								show2: false,
+								// show2: false,
 								id: i.standardSecondaryTitleId,
 								children: i.checklistList.map(j => {
-									// console.log(j)
+									// console.log(j.checkTypeName)
 									return {
 										standardId: j.standardId,
-										title: j.content,
+										title: j.content+'('+ j.checkTypeName+')' ,
 										id: j.standardChecklistId,
 										checkContent: j.checkContent,
 										standardId: j.standardId,

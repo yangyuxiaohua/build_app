@@ -15,27 +15,28 @@ export default {
 	},
 	onLoad() {
 		// let _this = this
-		let _this = this
-				uni.getStorage({
-					key: 'projectInfo',
-					success: function(res) {
-						// console.log(res.data);
-						_this.projectId = _this.splitStr(res.data)[0]
-						_this.getContent()
-					}
-				})
-		
+		// let _this = this
+	
+
 
 	},
 	onShow() {
 		let _this = this
 		uni.getStorage({
+			key: 'projectInfo',
+			success: function(res) {
+				// console.log(res.data);
+				_this.projectId = _this.splitStr(res.data)[0]
+				_this.getContent()
+			}
+		})
+		uni.getStorage({
 			key: 'checkList',
 			success: function(res) {
-				console.log(res)
+				// console.log(res)
 				if (res.data) {
 					_this.checkList += res.data.join(',')
-						uni.removeStorageSync('checkList');
+					uni.removeStorageSync('checkList');
 				}
 			}
 		})
@@ -60,14 +61,10 @@ export default {
 					_this.acceptRecode = res.data.remark
 					// _this.onEditorReady()
 					_this.checkNum = res.data.samplingRequires
-
-
 					if (res.data.categoryCode == 100) {
-						// console.log(1)
 						_this.isNoDataReview = false
 					} else {
-						_this.isNoDataReview = true
-						// console.log(2)
+						_this.isNoDataReview = true //不是资料审查
 					}
 					_this.getData()
 				}
@@ -146,7 +143,7 @@ export default {
 						name: 'file',
 						fileType: 'video',
 						success: (uploadFileRes) => {
-							console.log(uploadFileRes)
+							// console.log(uploadFileRes)
 							let res = JSON.parse(uploadFileRes.data)
 							if (res.httpStatus == 200) {
 								this.saveFile(res.result, type)
@@ -184,6 +181,7 @@ export default {
 		},
 		// 提交
 		async onSubmit(bool) {
+			// console.log(this.)
 			let param = {};
 			if (this.isNoDataReview) {
 				param = {
@@ -195,7 +193,7 @@ export default {
 					projectId: this.projectId,
 					result: this.value,
 					saveTemp: bool,
-					standardId:this.standardId
+					standardId: this.standardId
 				}
 				let res = await this.$api.POST_submitRecode(param)
 				if (res.httpStatus == 200) {
@@ -218,34 +216,34 @@ export default {
 					})
 				}
 			} else {
-             param = {
-             	checklistId: this.checklistId,
-             	nonconformityDetail: this.acceptRecode,
-             	projectId: this.projectId,
-             	result: this.value,
-             	saveTemp: bool,
-             	standardId:this.standardId
-             }
-             let res = await this.$api.POST_reviewerReplace(param)
-             if (res.httpStatus == 200) {
-             	this.$refs.uToast.show({
-             		title: '提交成功',
-             		type: 'success',
-             		duration: 2000
-             	})
-             } else if (res.httpStatus == 417) {
-             	this.$refs.uToast.show({
-             		title: '只能本人修改',
-             		type: 'error',
-             		duration: 3000
-             	})
-             } else {
-             	this.$refs.uToast.show({
-             		title: '提交失败，请检查网络，填写项',
-             		type: 'error',
-             		duration: 3000
-             	})
-             }
+				param = {
+					checklistId: this.checklistId,
+					nonconformityDetail: this.acceptRecode,
+					projectId: this.projectId,
+					result: this.value,
+					saveTemp: bool,
+					standardId: this.standardId
+				}
+				let res = await this.$api.POST_reviewerReplace(param)
+				if (res.httpStatus == 200) {
+					this.$refs.uToast.show({
+						title: '提交成功',
+						type: 'success',
+						duration: 2000
+					})
+				} else if (res.httpStatus == 417) {
+					this.$refs.uToast.show({
+						title: '只能本人修改',
+						type: 'error',
+						duration: 3000
+					})
+				} else {
+					this.$refs.uToast.show({
+						title: '提交失败，请检查网络，填写项',
+						type: 'error',
+						duration: 3000
+					})
+				}
 
 			}
 			// } else {
@@ -301,29 +299,30 @@ export default {
 			let res = await this.$api.POST_getRecordByChecklistId(param)
 			// console.log(res)
 			if (res.httpStatus == 200) {
-				// console.log(typeof(res.result.result.checkPart) )
-				// console.log(res.result.result.result)
 				if (this.isNoDataReview) {
-					// let checkPart;
+					// console.log('现场')
 					if (res.result.result.checkPart && res.result.result.checkPart != 'undefined') {
 						this.checkList = res.result.result.checkPart
 					} else {
 						this.checkList = ''
 					}
-					// this.checkList = res.result.result.checkPart ? res.result.result.checkPart : ''
 					this.checkNum = res.result.result.checkNum ? res.result.result.checkNum : this.checkNum
 					this.acceptRecode = res.result.result.contentRecord ? res.result.result.contentRecord : this.acceptRecode
 					this.value = res.result.result.result
 				} else {
-					this.acceptRecode = res.result.result.contentRecord
+					// console.log('资料')
+					this.acceptRecode = res.result.result.nonconformityDetail ? res.result.result.nonconformityDetail : this.acceptRecode,
+					// console.log(this.acceptRecode)
 					this.value = res.result.result.result
 				}
-				
+				this.onEditorReady()
+
 			}
 		},
 		//验收记录富文本
 		onEditorReady() {
 			let _this = this
+			// console.log(this.acceptRecode)
 			uni.createSelectorQuery().select('#editor').context((res) => {
 				this.editorCtx = res.context
 				this.editorCtx.setContents({

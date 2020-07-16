@@ -10,7 +10,7 @@
 			<text>{{projectName}}</text>
 		</view>
 		<u-collapse :item-style="itemStyle" :head-style="headsty" @change='OnBuild' :body-style='bodyStyle' :open='uCollapseOpen'>
-			<u-collapse-item class="collitem" title="项目基本信息" index='1'>
+			<u-collapse-item class="collitem" title="项目基本信息" index='1' :open="uCollapseItemOpen">
 				<view class="collapse-item">
 					<view style="padding:4px 0" v-for="(item,index) in baseInfo" :key='index' >
 						<span>{{item.label}}</span>
@@ -18,57 +18,21 @@
 					</view>
 				</view>
 			</u-collapse-item>
-			<u-collapse-item class="collitem" title="建(构)筑信息" index='2'>
+			<u-collapse-item class="collitem" title="建(构)筑信息" index='2' :open="uCollapseItemOpen">
 				<view>
 					<u-tabs :list="list" :current="current" @change="changetab"></u-tabs>
 					<view class="tabView">
 						<view class="tabContent"  v-for="(item,index) in basetabInfo" :key='index' style="line-height: 60rpx;">
-							<view>
-								<span>建筑名称：</span>
-								<span>{{item.buildName}}</span>
-							</view>
-							<view>
-								<span>结构类型：</span>
-								<span>{{item.buildTypeId}}</span>
-							</view>
-							<view>
-								<span>耐火等级：</span>
-								<span>{{item.refractoryLevelId}}</span>
-							</view>
-							<view>
-								<span>地上层数：</span>
-								<span>{{item.inTheUpperNumber}}</span>
-							</view>
-							<view>
-								<span>地下层数：</span>
-								<span>{{item.numberOfUnderground}}</span>
-							</view>
-							<view>
-								<span>建筑高度：</span>
-								<span>{{item.buildHeight}}</span>
-							</view>
-							<view>
-								<span>建筑长度：</span>
-								<span>{{item.buildLen}}</span>
-							</view>
-							<view>
-								<span>占地面积：</span>
-								<span>{{item.coversArea}}</span>
-							</view>
-							<view>
-								<span>地上建筑面积：</span>
-								<span>{{item.aboveGroundFloorArea}}</span>
-							</view>
-							<view>
-								<span>地下建筑面积：</span>
-								<span>{{item.undergroundFloorSpace}}</span>
+							 <view v-for="(i,index2) in item" :key='index2'>
+								<span>{{i.label}}</span>
+								<span>{{i.value}}</span>
 							</view>
 						</view>
 
 					</view>
 				</view>
 			</u-collapse-item>
-			<u-collapse-item class="collitem" title="建筑消防设施" index='3'>
+			<u-collapse-item class="collitem" title="建筑消防设施" index='3' :open="uCollapseItemOpen">
 				<view class="collapse-item">
 					<u-checkbox-group :wrap='true' active-color="0E8AFE">
 						<u-checkbox style="margin: 4px 0;" v-model="item.checked" v-for="(item, index) in checkboxlist" :key="index"

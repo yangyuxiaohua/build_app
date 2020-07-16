@@ -17,7 +17,7 @@
 						建设单位
 					</u-radio>
 					<u-radio :name="10">
-						验收单位
+						服务机构
 					</u-radio>
 				</u-radio-group>
 			</u-form-item>

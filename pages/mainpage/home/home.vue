@@ -35,9 +35,9 @@
 
 				</u-row>
 			</view>
-			<view class="projectChoseText">
+			<view class="projectChoseText" @click="show = true">
 				<text class="text1">{{projectName}}</text>
-				<text class="text2" @click="show = true"><u-icon name="arrow-rightward" color="#009ED6" size="36"></u-icon></text>
+				<text class="text2"><u-icon name="arrow-rightward" color="#009ED6" size="36"></u-icon></text>
 			</view>
 		</view>
 		<view class="projectChose" v-show="content2">
@@ -64,9 +64,9 @@
 				</view>
 
 			</view>
-			<view class="projectChoseText">
-				<text class="text1">选择需验收的建设工程</text>
-				<text class="text2" @click="show = true"><u-icon name="arrow-rightward" color="#009ED6" size="36"></u-icon></text>
+			<view class="projectChoseText" @click="show = true">
+				<text class="text1">{{projectName}}</text>
+				<text class="text2"><u-icon name="arrow-right" color="#009ED6" size="36"></u-icon></text>
 			</view>
 		</view>
 		<view class="homeMenu">
@@ -189,7 +189,7 @@
 				color: #009ED6;
 
 				.text1 {
-					margin-left: 20rpx;
+					margin-left: 150rpx;
 					// text-indent: 20rpx;
 					// position: absolute;
 					// left: 20rpx;
