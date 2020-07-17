@@ -14,30 +14,15 @@ export default {
 			factoryName:'',
 			password:'',
 			token:'',
-			autoLogin:''
+			autoLogin:'',
+			userId:''
 		};
 	},
 	
 	onShow() {
-		// console.log(11111)
+		this.getUserInformation()
 	    this.token = uni.getStorageSync('loginInfo')
 	    this.autoLogin = uni.getStorageSync('autoLogin')
-		// console.log(uni.getStorageSync('autoLogin'))
-		let _this = this
-		uni.getStorage({
-			key: 'userInfo',
-			success: function(res) {
-				console.log(res)
-				_this.userId = res.data.userId
-				_this.username = res.data.username
-				_this.phone = res.data.phone
-				_this.factoryName = res.data.factoryName
-				_this.account = res.data.account
-				// _this.appToken = res.data.appToken
-				_this.password = res.data.password
-				// _this.password = res.data.password
-			}
-		})
 	},
 	methods: {
 		login() {
@@ -76,6 +61,19 @@ export default {
 		open() {
 			this.show = true;
 		},
+		async getUserInformation() {
+			let res = await this.$api.POST_getUserInfo()
+			if (res.httpStatus == 200) {
+				console.log(res)
+				this.userId = res.result.userId
+				this.username = res.result.username
+				this.phone = res.result.phone
+				this.factoryName = res.result.factoryName
+				this.account = res.result.account
+				this.password = res.result.password
+			}
+		
+		},
 		async confirm() {
 			console.log(this.pwd)
 			let param = {
@@ -97,6 +95,8 @@ export default {
 					duration: 1000
 				})
 			}
-		}
+		},
+		
+		
 	}
 };

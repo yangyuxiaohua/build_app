@@ -65,7 +65,6 @@ export default {
 			title: this.titleText
 		});
 		uni.setStorageSync('returnAssess', titleText)
-		// uni.removeStorageSync('assess')
 	},
 	onPullDownRefresh() {
 		if (uni.getStorageSync('checkContent')) {

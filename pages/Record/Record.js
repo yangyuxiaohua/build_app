@@ -15,12 +15,6 @@ export default {
 	},
 	onLoad() {
 		// let _this = this
-		// let _this = this
-	
-
-
-	},
-	onShow() {
 		let _this = this
 		uni.getStorage({
 			key: 'projectInfo',
@@ -30,6 +24,12 @@ export default {
 				_this.getContent()
 			}
 		})
+	
+
+
+	},
+	onShow() {
+		let _this = this
 		uni.getStorage({
 			key: 'checkList',
 			success: function(res) {

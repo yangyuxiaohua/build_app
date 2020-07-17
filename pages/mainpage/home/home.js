@@ -90,11 +90,11 @@ export default {
 				if (totalTasks <= 0) {
 					this.percent = 0;
 				} else {
-					// this.percent = Math.ceil(
-					// 	finishTasks / totalTasks * 100
-					// );
-					this.percent = (finishTasks / totalTasks * 100)
-					this.percent = parseFloat(this.percent.toFixed(2))
+					this.percent = Math.ceil(
+						finishTasks / totalTasks * 100
+					);
+				// 	this.percent = (finishTasks / totalTasks * 100)
+				// 	this.percent = parseFloat(this.percent.toFixed(2))
 				}
 			}
 			// let {}
@@ -329,7 +329,7 @@ export default {
 		},
 		//选中项目
 		confirm(e) {
-			console.log(e)
+			// console.log(e)
 			this.projectName = e[0].label
 				let id;
 			if (e[0].value) {
