@@ -2968,6 +2968,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
+  uToast: __webpack_require__(/*! @/uview-ui/components/u-toast/u-toast.vue */ 5).default,
   uModal: __webpack_require__(/*! @/uview-ui/components/u-modal/u-modal.vue */ 81).default,
   uForm: __webpack_require__(/*! @/uview-ui/components/u-form/u-form.vue */ 113).default,
   uFormItem: __webpack_require__(/*! @/uview-ui/components/u-form-item/u-form-item.vue */ 118)
@@ -2986,17 +2987,18 @@ var render = function() {
     "v-uni-view",
     { staticClass: _vm._$g(0, "sc"), attrs: { _i: 0 } },
     [
+      _c("u-toast", { ref: "uToast", attrs: { _i: 1 } }),
       _c("u-modal", {
-        attrs: { _i: 1 },
+        attrs: { _i: 2 },
         model: {
-          value: _vm._$g(1, "v-model"),
+          value: _vm._$g(2, "v-model"),
           callback: function() {},
           expression: "show"
         }
       }),
       _c(
         "u-form",
-        { ref: "uForm", attrs: { _i: 2 } },
+        { ref: "uForm", attrs: { _i: 3 } },
         [
           _c("u-form-item", {
             staticStyle: {
@@ -3004,16 +3006,16 @@ var render = function() {
               "padding-left": "10rpx",
               "line-height": "30rpx"
             },
-            attrs: { _i: 3 }
+            attrs: { _i: 4 }
           }),
           _c(
             "u-form-item",
-            { attrs: { _i: 4 } },
+            { attrs: { _i: 5 } },
             [
               _c("u-input", {
-                attrs: { _i: 5 },
+                attrs: { _i: 6 },
                 model: {
-                  value: _vm._$g(5, "v-model"),
+                  value: _vm._$g(6, "v-model"),
                   callback: function() {},
                   expression: "form.factoryName"
                 }
@@ -3023,12 +3025,12 @@ var render = function() {
           ),
           _c(
             "u-form-item",
-            { attrs: { _i: 6 } },
+            { attrs: { _i: 7 } },
             [
               _c("u-input", {
-                attrs: { _i: 7 },
+                attrs: { _i: 8 },
                 model: {
-                  value: _vm._$g(7, "v-model"),
+                  value: _vm._$g(8, "v-model"),
                   callback: function() {},
                   expression: "form.maleSignal"
                 }
@@ -3038,21 +3040,21 @@ var render = function() {
           ),
           _c(
             "u-form-item",
-            { attrs: { _i: 8 } },
+            { attrs: { _i: 9 } },
             [
               _c(
                 "u-radio-group",
                 {
-                  attrs: { _i: 9 },
+                  attrs: { _i: 10 },
                   model: {
-                    value: _vm._$g(9, "v-model"),
+                    value: _vm._$g(10, "v-model"),
                     callback: function() {},
                     expression: "form.type"
                   }
                 },
                 [
-                  _c("u-radio", { attrs: { _i: 10 } }, [_vm._v("建设单位")]),
-                  _c("u-radio", { attrs: { _i: 11 } }, [_vm._v("服务机构")])
+                  _c("u-radio", { attrs: { _i: 11 } }, [_vm._v("建设单位")]),
+                  _c("u-radio", { attrs: { _i: 12 } }, [_vm._v("服务机构")])
                 ],
                 1
               )
@@ -3061,12 +3063,12 @@ var render = function() {
           ),
           _c(
             "u-form-item",
-            { attrs: { _i: 12 } },
+            { attrs: { _i: 13 } },
             [
               _c("u-input", {
-                attrs: { _i: 13 },
+                attrs: { _i: 14 },
                 model: {
-                  value: _vm._$g(13, "v-model"),
+                  value: _vm._$g(14, "v-model"),
                   callback: function() {},
                   expression: "form.contactMasterUser"
                 }
@@ -3076,12 +3078,12 @@ var render = function() {
           ),
           _c(
             "u-form-item",
-            { attrs: { _i: 14 } },
+            { attrs: { _i: 15 } },
             [
               _c("u-input", {
-                attrs: { _i: 15 },
+                attrs: { _i: 16 },
                 model: {
-                  value: _vm._$g(15, "v-model"),
+                  value: _vm._$g(16, "v-model"),
                   callback: function() {},
                   expression: "form.contactMasterPhone"
                 }
@@ -3091,12 +3093,12 @@ var render = function() {
           ),
           _c(
             "u-form-item",
-            { attrs: { _i: 16 } },
+            { attrs: { _i: 17 } },
             [
               _c("u-input", {
-                attrs: { _i: 17 },
+                attrs: { _i: 18 },
                 model: {
-                  value: _vm._$g(17, "v-model"),
+                  value: _vm._$g(18, "v-model"),
                   callback: function() {},
                   expression: "form.account"
                 }
@@ -3106,12 +3108,12 @@ var render = function() {
           ),
           _c(
             "u-form-item",
-            { attrs: { _i: 18 } },
+            { attrs: { _i: 19 } },
             [
               _c("u-input", {
-                attrs: { _i: 19 },
+                attrs: { _i: 20 },
                 model: {
-                  value: _vm._$g(19, "v-model"),
+                  value: _vm._$g(20, "v-model"),
                   callback: function() {},
                   expression: "form.password"
                 }
@@ -3121,17 +3123,17 @@ var render = function() {
           ),
           _c(
             "u-form-item",
-            { staticStyle: { position: "relative" }, attrs: { _i: 20 } },
+            { staticStyle: { position: "relative" }, attrs: { _i: 21 } },
             [
               _c("u-input", {
-                attrs: { _i: 21 },
+                attrs: { _i: 22 },
                 on: {
                   input: function($event) {
                     return _vm.$handleViewEvent($event)
                   }
                 },
                 model: {
-                  value: _vm._$g(21, "v-model"),
+                  value: _vm._$g(22, "v-model"),
                   callback: function() {},
                   expression: "form.password2"
                 }
@@ -3143,8 +3145,8 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: _vm._$g(22, "v-show"),
-                      expression: "_$g(22,'v-show')"
+                      value: _vm._$g(23, "v-show"),
+                      expression: "_$g(23,'v-show')"
                     }
                   ],
                   staticStyle: {
@@ -3154,7 +3156,7 @@ var render = function() {
                     "font-size": "12rpx",
                     color: "red"
                   },
-                  attrs: { _i: 22 }
+                  attrs: { _i: 23 }
                 },
                 [_vm._v("密码不一致!!!")]
               )
@@ -3163,12 +3165,12 @@ var render = function() {
           ),
           _c(
             "u-form-item",
-            { staticStyle: { "text-align": "start" }, attrs: { _i: 23 } },
+            { staticStyle: { "text-align": "start" }, attrs: { _i: 24 } },
             [
               _c(
                 "u-button",
                 {
-                  attrs: { _i: 24 },
+                  attrs: { _i: 25 },
                   on: {
                     click: function($event) {
                       return _vm.$handleViewEvent($event)
@@ -3185,12 +3187,12 @@ var render = function() {
       ),
       _c(
         "v-uni-view",
-        { staticClass: _vm._$g(25, "sc"), attrs: { _i: 25 } },
+        { staticClass: _vm._$g(26, "sc"), attrs: { _i: 26 } },
         [
           _c(
             "u-button",
             {
-              attrs: { _i: 26 },
+              attrs: { _i: 27 },
               on: {
                 click: function($event) {
                   return _vm.$handleViewEvent($event)
@@ -8578,9 +8580,9 @@ var components = {
   uSelect: __webpack_require__(/*! @/uview-ui/components/u-select/u-select.vue */ 158).default,
   uRow: __webpack_require__(/*! @/uview-ui/components/u-row/u-row.vue */ 251).default,
   uCol: __webpack_require__(/*! @/uview-ui/components/u-col/u-col.vue */ 259).default,
-  uIcon: __webpack_require__(/*! @/uview-ui/components/u-icon/u-icon.vue */ 8).default,
   uLineProgress: __webpack_require__(/*! @/uview-ui/components/u-line-progress/u-line-progress.vue */ 267)
     .default,
+  uIcon: __webpack_require__(/*! @/uview-ui/components/u-icon/u-icon.vue */ 8).default,
   uGrid: __webpack_require__(/*! @/uview-ui/components/u-grid/u-grid.vue */ 275).default,
   uGridItem: __webpack_require__(/*! @/uview-ui/components/u-grid-item/u-grid-item.vue */ 283)
     .default
@@ -8768,32 +8770,6 @@ var render = function() {
               )
             ],
             1
-          ),
-          _c(
-            "v-uni-view",
-            {
-              staticClass: _vm._$g(23, "sc"),
-              attrs: { _i: 23 },
-              on: {
-                click: function($event) {
-                  return _vm.$handleViewEvent($event)
-                }
-              }
-            },
-            [
-              _c(
-                "v-uni-text",
-                { staticClass: _vm._$g(24, "sc"), attrs: { _i: 24 } },
-                [_vm._v(_vm._$g(24, "t0-0"))]
-              ),
-              _c(
-                "v-uni-text",
-                { staticClass: _vm._$g(25, "sc"), attrs: { _i: 25 } },
-                [_c("u-icon", { attrs: { _i: 26 } })],
-                1
-              )
-            ],
-            1
           )
         ],
         1
@@ -8805,40 +8781,40 @@ var render = function() {
             {
               name: "show",
               rawName: "v-show",
-              value: _vm._$g(27, "v-show"),
-              expression: "_$g(27,'v-show')"
+              value: _vm._$g(23, "v-show"),
+              expression: "_$g(23,'v-show')"
             }
           ],
-          staticClass: _vm._$g(27, "sc"),
-          attrs: { _i: 27 }
+          staticClass: _vm._$g(23, "sc"),
+          attrs: { _i: 23 }
         },
         [
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(28, "sc"), attrs: { _i: 28 } },
+            { staticClass: _vm._$g(24, "sc"), attrs: { _i: 24 } },
             [
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(29, "sc"), attrs: { _i: 29 } },
-                [_c("v-uni-text", { attrs: { _i: 30 } }, [_vm._v("验收进度")])],
+                { staticClass: _vm._$g(25, "sc"), attrs: { _i: 25 } },
+                [_c("v-uni-text", { attrs: { _i: 26 } }, [_vm._v("验收进度")])],
                 1
               ),
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(31, "sc"), attrs: { _i: 31 } },
+                { staticClass: _vm._$g(27, "sc"), attrs: { _i: 27 } },
                 [
                   _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(32, "sc"), attrs: { _i: 32 } },
-                    [_c("u-line-progress", { attrs: { _i: 33 } })],
+                    { staticClass: _vm._$g(28, "sc"), attrs: { _i: 28 } },
+                    [_c("u-line-progress", { attrs: { _i: 29 } })],
                     1
                   ),
                   _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(34, "sc"), attrs: { _i: 34 } },
+                    { staticClass: _vm._$g(30, "sc"), attrs: { _i: 30 } },
                     [
-                      _c("v-uni-text", { attrs: { _i: 35 } }, [
-                        _vm._v(_vm._$g(35, "t0-0"))
+                      _c("v-uni-text", { attrs: { _i: 31 } }, [
+                        _vm._v(_vm._$g(31, "t0-0"))
                       ]),
                       _vm._v("%")
                     ],
@@ -8849,15 +8825,15 @@ var render = function() {
               ),
               _c(
                 "v-uni-view",
-                { staticClass: _vm._$g(36, "sc"), attrs: { _i: 36 } },
+                { staticClass: _vm._$g(32, "sc"), attrs: { _i: 32 } },
                 [
                   _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(37, "sc"), attrs: { _i: 37 } },
+                    { staticClass: _vm._$g(33, "sc"), attrs: { _i: 33 } },
                     [
                       _vm._v("已完成"),
-                      _c("v-uni-text", { attrs: { _i: 38 } }, [
-                        _vm._v(_vm._$g(38, "t0-0"))
+                      _c("v-uni-text", { attrs: { _i: 34 } }, [
+                        _vm._v(_vm._$g(34, "t0-0"))
                       ]),
                       _vm._v("项")
                     ],
@@ -8865,11 +8841,11 @@ var render = function() {
                   ),
                   _c(
                     "v-uni-view",
-                    { staticClass: _vm._$g(39, "sc"), attrs: { _i: 39 } },
+                    { staticClass: _vm._$g(35, "sc"), attrs: { _i: 35 } },
                     [
                       _vm._v("待验收"),
-                      _c("v-uni-text", { attrs: { _i: 40 } }, [
-                        _vm._v(_vm._$g(40, "t0-0"))
+                      _c("v-uni-text", { attrs: { _i: 36 } }, [
+                        _vm._v(_vm._$g(36, "t0-0"))
                       ]),
                       _vm._v("项")
                     ],
@@ -8884,8 +8860,8 @@ var render = function() {
           _c(
             "v-uni-view",
             {
-              staticClass: _vm._$g(41, "sc"),
-              attrs: { _i: 41 },
+              staticClass: _vm._$g(37, "sc"),
+              attrs: { _i: 37 },
               on: {
                 click: function($event) {
                   return _vm.$handleViewEvent($event)
@@ -8895,13 +8871,13 @@ var render = function() {
             [
               _c(
                 "v-uni-text",
-                { staticClass: _vm._$g(42, "sc"), attrs: { _i: 42 } },
-                [_vm._v(_vm._$g(42, "t0-0"))]
+                { staticClass: _vm._$g(38, "sc"), attrs: { _i: 38 } },
+                [_vm._v(_vm._$g(38, "t0-0"))]
               ),
               _c(
                 "v-uni-text",
-                { staticClass: _vm._$g(43, "sc"), attrs: { _i: 43 } },
-                [_c("u-icon", { attrs: { _i: 44 } })],
+                { staticClass: _vm._$g(39, "sc"), attrs: { _i: 39 } },
+                [_c("u-icon", { attrs: { _i: 40 } })],
                 1
               )
             ],
@@ -8912,17 +8888,17 @@ var render = function() {
       ),
       _c(
         "v-uni-view",
-        { staticClass: _vm._$g(45, "sc"), attrs: { _i: 45 } },
+        { staticClass: _vm._$g(41, "sc"), attrs: { _i: 41 } },
         [
           _c(
             "u-grid",
-            { attrs: { _i: 46 } },
-            _vm._l(_vm._$g(47, "f"), function(item, index, $20, $30) {
+            { attrs: { _i: 42 } },
+            _vm._l(_vm._$g(43, "f"), function(item, index, $20, $30) {
               return _c(
                 "u-grid-item",
                 {
                   key: item,
-                  attrs: { _i: "47-" + $30 },
+                  attrs: { _i: "43-" + $30 },
                   on: {
                     click: function($event) {
                       return _vm.$handleViewEvent($event)
@@ -8937,18 +8913,18 @@ var render = function() {
                       "margin-bottom": "20rpx"
                     },
                     attrs: {
-                      src: _vm._$g("48-" + $30, "a-src"),
+                      src: _vm._$g("44-" + $30, "a-src"),
                       mode: "",
-                      _i: "48-" + $30
+                      _i: "44-" + $30
                     }
                   }),
                   _c(
                     "v-uni-view",
                     {
-                      staticClass: _vm._$g("49-" + $30, "sc"),
-                      attrs: { _i: "49-" + $30 }
+                      staticClass: _vm._$g("45-" + $30, "sc"),
+                      attrs: { _i: "45-" + $30 }
                     },
-                    [_vm._v(_vm._$g("49-" + $30, "t0-0"))]
+                    [_vm._v(_vm._$g("45-" + $30, "t0-0"))]
                   )
                 ],
                 1
@@ -9996,7 +9972,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ./node_modules/css-loader/dist/runtime/api.js */ 16);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".home_content[data-v-1d10ca91] {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: start;\n  -webkit-justify-content: start;\n          justify-content: start;\n}\n.home_content .imgBox[data-v-1d10ca91] {\n  width: 100%;\n}\n.home_content .imgBox uni-image[data-v-1d10ca91] {\n  width: 100%;\n  height: 300rpx;\n}\n.home_content .projectChose[data-v-1d10ca91] {\n  width: 100%;\n  height: 250rpx;\n  margin-top: 20rpx;\n  background-color: #F5F1EF;\n  position: relative;\n}\n.home_content .projectChose .statisticalBox[data-v-1d10ca91] {\n  width: 90%;\n  height: 250rpx;\n  background-color: #FFFFFF;\n  border-radius: 20rpx 20rpx 0 0;\n  position: absolute;\n  left: 5%;\n  top: -50%;\n}\n.home_content .projectChose .statisticalBox .statistical[data-v-1d10ca91] {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n          flex-direction: column;\n  padding-top: 60rpx;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          align-items: center;\n}\n.home_content .projectChose .statisticalBox .statistical .statisticalTitNum[data-v-1d10ca91] {\n  font-size: 60rpx;\n}\n.home_content .projectChose .statisticalBox .statistical .statisticalTit[data-v-1d10ca91] {\n  font-size: 32rpx;\n  line-height: 90rpx;\n  color: #9B9C9C;\n}\n.home_content .projectChose .statisticalBox .statisticalBoxTit[data-v-1d10ca91] {\n  text-indent: 20rpx;\n}\n.home_content .projectChose .statisticalBox .statisticalBoxTit uni-text[data-v-1d10ca91] {\n  font-size: 32rpx;\n  line-height: 80rpx;\n}\n.home_content .projectChose .statisticalBox .constuStatistical[data-v-1d10ca91] {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  margin-top: 10rpx;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n          justify-content: center;\n}\n.home_content .projectChose .statisticalBox .constuStatistical .uLineProgressBox[data-v-1d10ca91] {\n  width: 70%;\n  margin-top: 18rpx;\n}\n.home_content .projectChose .statisticalBox .constuStatistical .uLineProgressNum uni-text[data-v-1d10ca91] {\n  font-size: 48rpx;\n  margin-left: 10rpx;\n}\n.home_content .projectChose .statisticalBox .statisticalNumBox[data-v-1d10ca91] {\n  padding: 0 60rpx;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n          justify-content: space-between;\n  font-size: 28rpx;\n  line-height: 80rpx;\n  color: #9D9E9E;\n}\n.home_content .projectChose .statisticalBox .statisticalNumBox .completed uni-text[data-v-1d10ca91] {\n  margin: 0 5rpx;\n  font-size: 40rpx;\n}\n.home_content .projectChose .statisticalBox .statisticalNumBox .waitCompleted uni-text[data-v-1d10ca91] {\n  margin: 0 5rpx;\n  font-size: 40rpx;\n}\n.home_content .projectChose .projectChoseText[data-v-1d10ca91] {\n  width: 100%;\n  font-size: 32rpx;\n  position: absolute;\n  bottom: 30rpx;\n  color: #009ED6;\n}\n.home_content .projectChose .projectChoseText .text1[data-v-1d10ca91] {\n  margin-left: 150rpx;\n}\n.home_content .projectChose .projectChoseText .text2[data-v-1d10ca91] {\n  position: absolute;\n  right: 20rpx;\n}\n.home_content .homeMenu[data-v-1d10ca91] {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n          flex: 1;\n  margin-top: 40rpx;\n}\n", ""]);
+exports.push([module.i, ".home_content[data-v-1d10ca91] {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: start;\n  -webkit-justify-content: start;\n          justify-content: start;\n}\n.home_content .imgBox[data-v-1d10ca91] {\n  width: 100%;\n}\n.home_content .imgBox uni-image[data-v-1d10ca91] {\n  width: 100%;\n  height: 300rpx;\n}\n.home_content .projectChose[data-v-1d10ca91] {\n  width: 100%;\n  height: 250rpx;\n  margin-top: 20rpx;\n  background-color: #F5F1EF;\n  position: relative;\n}\n.home_content .projectChose .statisticalBox[data-v-1d10ca91] {\n  width: 90%;\n  height: 250rpx;\n  background-color: #FFFFFF;\n  border-radius: 20rpx 20rpx 0 0;\n  position: absolute;\n  left: 5%;\n  top: -50%;\n}\n.home_content .projectChose .statisticalBox .statistical[data-v-1d10ca91] {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n  -webkit-flex-direction: column;\n          flex-direction: column;\n  padding-top: 60rpx;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          align-items: center;\n}\n.home_content .projectChose .statisticalBox .statistical .statisticalTitNum[data-v-1d10ca91] {\n  font-size: 60rpx;\n}\n.home_content .projectChose .statisticalBox .statistical .statisticalTit[data-v-1d10ca91] {\n  font-size: 32rpx;\n  line-height: 90rpx;\n  color: #9B9C9C;\n}\n.home_content .projectChose .statisticalBox .statisticalBoxTit[data-v-1d10ca91] {\n  text-indent: 20rpx;\n}\n.home_content .projectChose .statisticalBox .statisticalBoxTit uni-text[data-v-1d10ca91] {\n  font-size: 32rpx;\n  line-height: 80rpx;\n}\n.home_content .projectChose .statisticalBox .constuStatistical[data-v-1d10ca91] {\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  margin-top: 10rpx;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n          justify-content: center;\n}\n.home_content .projectChose .statisticalBox .constuStatistical .uLineProgressBox[data-v-1d10ca91] {\n  width: 70%;\n  margin-top: 18rpx;\n}\n.home_content .projectChose .statisticalBox .constuStatistical .uLineProgressNum uni-text[data-v-1d10ca91] {\n  font-size: 48rpx;\n  margin-left: 10rpx;\n}\n.home_content .projectChose .statisticalBox .statisticalNumBox[data-v-1d10ca91] {\n  padding: 0 60rpx;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n          justify-content: space-between;\n  font-size: 28rpx;\n  line-height: 80rpx;\n  color: #9D9E9E;\n}\n.home_content .projectChose .statisticalBox .statisticalNumBox .completed uni-text[data-v-1d10ca91] {\n  margin: 0 5rpx;\n  font-size: 40rpx;\n}\n.home_content .projectChose .statisticalBox .statisticalNumBox .waitCompleted uni-text[data-v-1d10ca91] {\n  margin: 0 5rpx;\n  font-size: 40rpx;\n}\n.home_content .projectChose .projectChoseText[data-v-1d10ca91] {\n  width: 100%;\n  font-size: 32rpx;\n  position: absolute;\n  bottom: 30rpx;\n  color: #009ED6;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-pack: center;\n  -webkit-justify-content: center;\n          justify-content: center;\n  -webkit-box-align: center;\n  -webkit-align-items: center;\n          align-items: center;\n}\n.home_content .projectChose .projectChoseText .text2[data-v-1d10ca91] {\n  position: absolute;\n  right: 20rpx;\n}\n.home_content .homeMenu[data-v-1d10ca91] {\n  -webkit-box-flex: 1;\n  -webkit-flex: 1;\n          flex: 1;\n  margin-top: 40rpx;\n}\n", ""]);
 // Exports
 module.exports = exports;
 

@@ -191,7 +191,7 @@ export default {
 					contentRecord: this.acceptRecode,
 					isApp: 1,
 					projectId: this.projectId,
-					result: this.value,
+					result: this.value?this.value :'',
 					saveTemp: bool,
 					standardId: this.standardId
 				}
@@ -204,13 +204,13 @@ export default {
 					})
 				} else if (res.httpStatus == 417) {
 					this.$refs.uToast.show({
-						title: '只能本人修改',
+						title: res.msg,
 						type: 'error',
 						duration: 3000
 					})
 				} else {
 					this.$refs.uToast.show({
-						title: '提交失败，请检查网络，填写项',
+						title: res.msg,
 						type: 'error',
 						duration: 3000
 					})
@@ -220,7 +220,7 @@ export default {
 					checklistId: this.checklistId,
 					nonconformityDetail: this.acceptRecode,
 					projectId: this.projectId,
-					result: this.value,
+					result: this.value?this.value :'',
 					saveTemp: bool,
 					standardId: this.standardId
 				}
@@ -233,13 +233,13 @@ export default {
 					})
 				} else if (res.httpStatus == 417) {
 					this.$refs.uToast.show({
-						title: '只能本人修改',
+						title: res.msg,
 						type: 'error',
 						duration: 3000
 					})
 				} else {
 					this.$refs.uToast.show({
-						title: '提交失败，请检查网络，填写项',
+						title: res.msg,
 						type: 'error',
 						duration: 3000
 					})

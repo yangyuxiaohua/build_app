@@ -9,6 +9,7 @@ export default {
 			titleText: '',
 			titleType: 0,
 			cid: '', // 选中的变色
+			categoryCode:0,
 			// initF:'', //保存回来的头部
 		}
 	},
@@ -29,17 +30,31 @@ export default {
 		} else {
 			this.projectName = ''
 			this.accordion = []
-			this.getProjects()
 			this.cid = ''
 			// console.log("新进的")
 			if (uni.getStorageSync('assess')) {
 				titleText = uni.getStorageSync('assess')
 				uni.removeStorageSync('assess')
-				console.log('点进来的')
+				// console.log('点进来的')
 			} else {
 				titleText = uni.getStorageSync('defaultAssess')
-				console.log("默认进来的")
+				// console.log("默认进来的")
 			}
+			console.log(titleText)
+			switch (titleText) {
+				case 'ziliao':
+					this.categoryCode = 100
+					break;
+				case 'jungong':
+					this.categoryCode = 101
+					break;
+				case 'xiaofang':
+					this.categoryCode = 102
+					break;
+				default:
+					this.categoryCode = 99
+			}
+			this.getProjects()
 		}
 		// ======================================================
 
@@ -90,6 +105,13 @@ export default {
 			let res = await this.$api.POST_getDocumentByProjectId(param)
 			// console.log(res)
 			if (res.httpStatus == 200) {
+				if(res.result.tasksWithEvaluation.primaryTitles.length<1){
+					this.$refs.uToast.show({
+						title: '该工程暂无验收项',
+						type: 'info',
+						duration: 3000
+					})
+				}
 				this.accordion = res.result.tasksWithEvaluation.primaryTitles.map(item => {
 					// console.log(item)
 					return {
@@ -138,13 +160,16 @@ export default {
 		},
 		//请求项目列表
 		getProjects() {
+			// this.projectList =[]
 			let _this = this
+			// console.log(this.titleText)
 			uni.getStorage({
 				key: 'userInfo',
 				success: async function(res) {
 					// console.log(res)
 					let param = {
-						userId: res.data.userId
+						userId: res.data.userId,
+						categoryCode:_this.categoryCode
 					}
 					//获取项目
 					let res1 = await _this.$api.POST_getProjectsByUser(param)
@@ -221,14 +246,14 @@ export default {
 						item.children.forEach(j => {
 							j.show = j.show == false ? true : false
 							j.show1 = true
-							j.show2 = false
+							// j.show2 = false
 							j.children.forEach(k => {
 								k.show = false
 							})
 						})
 					} else {
 						item.show1 = true
-						item.show2 = false
+						// item.show2 = false
 						item.children.forEach(j => {
 							j.show = false
 							// j.show1 = false
@@ -241,13 +266,13 @@ export default {
 					item.children.forEach(j => {
 						if (j.id == i.id) {
 							j.show1 = j.show1 == true ? false : true
-							j.show2 = j.show2 == false ? true : false
+							// j.show2 = j.show2 == false ? true : false
 							j.children.forEach(k => {
 								k.show = k.show == false ? true : false
 							})
 						} else {
 							j.show1 = true
-							j.show2 = false
+							// j.show2 = false
 							j.children.forEach(k => {
 								k.show = false
 							})
@@ -280,7 +305,7 @@ export default {
 						num: `${item.finishTasksNum}/${item.totalTasksNum}`,
 						title: item.titleName,
 						show1: item.standardPrimaryTitleId == standardPrimaryTitleId ? false : true,
-						show2: item.standardPrimaryTitleId == standardPrimaryTitleId ? true : false,
+						// show2: item.standardPrimaryTitleId == standardPrimaryTitleId ? true : false,
 						id: item.standardPrimaryTitleId,
 						children: item.secondaryTitles.map(i => {
 							return {
@@ -288,7 +313,7 @@ export default {
 								title: i.titleName,
 								show: i.standardPrimaryTitleId == standardPrimaryTitleId ? true : false,
 								show1: i.standardSecondaryTitleId == standardSecondaryTitleId ? false : true,
-								show2: i.standardSecondaryTitleId == standardSecondaryTitleId ? true : false,
+								// show2: i.standardSecondaryTitleId == standardSecondaryTitleId ? true : false,
 								id: i.standardSecondaryTitleId,
 								children: i.checklistList.map(j => {
 									// console.log(j)

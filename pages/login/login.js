@@ -23,19 +23,21 @@ export default {
 		// })
 	},
 	onShow(){
-		console.log(uni.getStorageInfoSync())
+		// console.log(uni.getStorageInfoSync())
 		this.autologin = uni.getStorageSync('autoLogin')
 		// console.log(this.autologin)
 		if(this.autologin){
 			let token = uni.getStorageSync('loginInfo')
 			if(token){
-				uni.clearStorageSync()
 				uni.setStorageSync('autoLogin', this.autologin)
+				uni.clearStorageSync()
 				uni.switchTab({
 					url: '/pages/mainpage/home/home'
 				});
 			}
 		}else{
+			uni.clearStorageSync()
+			// console.log(uni.getStorageSync())
 			this.autologin = false
 		}
 	},

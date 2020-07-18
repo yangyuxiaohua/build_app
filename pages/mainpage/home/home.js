@@ -55,10 +55,10 @@ export default {
 			projectName: '选择需验收的建设工程', // 选中的项目
 		};
 	},
-	onLoad() {
-		this.getUserInformation()
-	},
+	onLoad() {},
 	onShow() {
+		this.projectName='选择需验收的建设工程'
+		this.getUserInformation()
 		this.getRole()
 		// uni.removeStorageSync('assess')
 	},
@@ -93,8 +93,8 @@ export default {
 					this.percent = Math.ceil(
 						finishTasks / totalTasks * 100
 					);
-				// 	this.percent = (finishTasks / totalTasks * 100)
-				// 	this.percent = parseFloat(this.percent.toFixed(2))
+					// 	this.percent = (finishTasks / totalTasks * 100)
+					// 	this.percent = parseFloat(this.percent.toFixed(2))
 				}
 			}
 			// let {}
@@ -104,33 +104,33 @@ export default {
 			let _this = this
 			let res = await this.$api.POST_getUserInfo()
 			if (res.httpStatus == 200) {
-				// console.log(res.result.appToken)
+				console.log(res.result)
 				uni.setStorageSync('loginInfo', res.result.appToken)
-				uni.setStorage({
-					key: 'userInfo',
-					data: res.result,
-				})
-				let param = {
-					userId: res.result.userId
-				}
-				//获取项目
-				let res1 = await this.$api.POST_getProjectsByUser(param)
-				if (res1.httpStatus == 200) {
-					this.list = res1.result.map(item => {
-						return {
-							label: item.projectName,
-							value: item.projectId
-						}
-					})
-					this.list = [{
-							label: '选择需验收的建设工程',
-							value: ''
-						}, ...this.list],
-						this.projectName = this.list[0].label
-
-				}
+				uni.setStorageSync('userInfo', res.result)
+				this.userId = res.result.userId
 			}
 
+		},
+		//获取项目列表
+		async getProjectLsit() {
+			let param = {
+				userId: this.userId
+			}
+			let res1 = await this.$api.POST_getProjectsByUser(param)
+			if (res1.httpStatus == 200) {
+				this.list = res1.result.map(item => {
+					return {
+						label: item.projectName,
+						value: item.projectId
+					}
+				})
+				this.list = [{
+						label: '选择需验收的建设工程',
+						value: ''
+					}, ...this.list],
+					this.projectName = this.list[0].label
+                    this.show = true
+			}
 		},
 		//获取用户角色
 		async getRole() {
@@ -331,7 +331,7 @@ export default {
 		confirm(e) {
 			// console.log(e)
 			this.projectName = e[0].label
-				let id;
+			let id;
 			if (e[0].value) {
 				id = e[0].value
 			} else {

@@ -64,7 +64,7 @@
 				</view>
 
 			</view>
-			<view class="projectChoseText" @click="show = true">
+			<view class="projectChoseText" @click="getProjectLsit()">
 				<text class="text1">{{projectName}}</text>
 				<text class="text2"><u-icon name="arrow-right" color="#009ED6" size="36"></u-icon></text>
 			</view>
@@ -187,9 +187,12 @@
 				position: absolute;
 				bottom: 30rpx;
 				color: #009ED6;
+				display: flex;
+				justify-content: center;
+				align-items: center;
 
 				.text1 {
-					margin-left: 150rpx;
+					// margin-left: 150rpx;
 					// text-indent: 20rpx;
 					// position: absolute;
 					// left: 20rpx;
