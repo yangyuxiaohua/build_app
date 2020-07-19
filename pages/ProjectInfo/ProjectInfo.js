@@ -220,7 +220,7 @@ export default {
 						_this.projectList = res1.result.map(item => {
 							return {
 								label: item.projectName,
-								value: item.projectId + '*' + item.acContentId + '*' + item.standardId
+								value: item.projectId + '*' + item.acContentId + '*' + item.completStandardId
 							}
 						})
 						_this.projectList = [{

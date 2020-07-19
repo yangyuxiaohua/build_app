@@ -78,7 +78,7 @@
 						<u-row gutter="16">
 							<u-col span="11">
 								<view style="padding-left:20rpx; min-height: 80rpx; display: flex; align-items: center;">
-									<text>{{j.title}}</text>
+									<text :class="{ca0cfff:j.checklistFinished}">{{j.title}}</text>
 								</view>
 							</u-col>
 							<u-col span="1">
@@ -201,6 +201,9 @@
 			-webkit-box-orient: vertical;
 			-webkit-line-clamp: 1;
 			overflow: hidden;
+		}
+		.ca0cfff{
+			color:#a0cfff;
 		}
 	}
 </style>

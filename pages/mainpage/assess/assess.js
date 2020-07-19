@@ -143,7 +143,8 @@ export default {
 										show: false,
 										categoryCode: res.result.tasksWithEvaluation.categoryCode,
 										standardPrimaryTitleId: j.standardPrimaryId,
-										standardSecondaryTitleId: j.standardSecondaryId
+										standardSecondaryTitleId: j.standardSecondaryId,
+										checklistFinished:j.checklistFinished
 									}
 
 								})
@@ -242,7 +243,7 @@ export default {
 				this.accordion.forEach(item => {
 					if (item.id == i.id) {
 						item.show1 = item.show1 == true ? false : true
-						item.show2 = item.show2 == false ? true : false
+						// item.show2 = item.show2 == false ? true : false
 						item.children.forEach(j => {
 							j.show = j.show == false ? true : false
 							j.show1 = true
@@ -330,7 +331,8 @@ export default {
 										show: j.standardSecondaryId == standardSecondaryTitleId ? true : false,
 										categoryCode: res.result.tasksWithEvaluation.categoryCode,
 										standardPrimaryTitleId: j.standardPrimaryId,
-										standardSecondaryTitleId: j.standardSecondaryId
+										standardSecondaryTitleId: j.standardSecondaryId,
+										checklistFinished:j.checklistFinished
 									}
 
 								})

@@ -295,6 +295,7 @@ export default {
 			let param = {
 				checklistId: this.checklistId,
 				projectId: this.projectId,
+				standardId: this.standardId
 			}
 			let res = await this.$api.POST_getRecordByChecklistId(param)
 			// console.log(res)
