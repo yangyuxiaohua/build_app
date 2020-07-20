@@ -203,7 +203,7 @@
 			overflow: hidden;
 		}
 		.ca0cfff{
-			color:#a0cfff;
+			color:#0E8AFE;
 		}
 	}
 </style>

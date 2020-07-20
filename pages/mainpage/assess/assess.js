@@ -40,7 +40,7 @@ export default {
 				titleText = uni.getStorageSync('defaultAssess')
 				// console.log("默认进来的")
 			}
-			console.log(titleText)
+			// console.log(titleText)
 			switch (titleText) {
 				case 'ziliao':
 					this.categoryCode = 100

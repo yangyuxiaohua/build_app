@@ -10,11 +10,15 @@ export default {
 			checkNum: '', //检查数量
 			acceptRecode: '', //验收记录
 			isNoDataReview: true,
-			standardId: ''
+			standardId: '',
+			isAccept: false, //判断是否是验收单位
+			showBtns1: true, //其他单位的按钮组
+			showBtns2: false, // 验收单位的按钮组
 		}
 	},
 	onLoad() {
 		// let _this = this
+		this.getRoleCode()
 		let _this = this
 		uni.getStorage({
 			key: 'projectInfo',
@@ -24,7 +28,7 @@ export default {
 				_this.getContent()
 			}
 		})
-	
+
 
 
 	},
@@ -191,7 +195,7 @@ export default {
 					contentRecord: this.acceptRecode,
 					isApp: 1,
 					projectId: this.projectId,
-					result: this.value?this.value :'',
+					result: this.value ? this.value : '',
 					saveTemp: bool,
 					standardId: this.standardId
 				}
@@ -220,7 +224,7 @@ export default {
 					checklistId: this.checklistId,
 					nonconformityDetail: this.acceptRecode,
 					projectId: this.projectId,
-					result: this.value?this.value :'',
+					result: this.value ? this.value : '',
 					saveTemp: bool,
 					standardId: this.standardId
 				}
@@ -298,7 +302,7 @@ export default {
 				standardId: this.standardId
 			}
 			let res = await this.$api.POST_getRecordByChecklistId(param)
-			// console.log(res)
+			console.log(res)
 			if (res.httpStatus == 200) {
 				if (this.isNoDataReview) {
 					// console.log('现场')
@@ -312,11 +316,28 @@ export default {
 					this.value = res.result.result.result
 				} else {
 					// console.log('资料')
+					// console.log(res)
 					this.acceptRecode = res.result.result.nonconformityDetail ? res.result.result.nonconformityDetail : this.acceptRecode,
-					// console.log(this.acceptRecode)
-					this.value = res.result.result.result
+						// console.log(this.acceptRecode)
+						this.value = res.result.result.result
 				}
 				this.onEditorReady()
+				if (this.isAccept) {
+					if (!res.result.result) {
+						this.showBtns1 = true
+						this.showBtns2 = false
+					} else {
+                         if(res.result.result.isApp==-1){
+							 // console.log(111)
+							 this.showBtns1 = false
+							 this.showBtns2 = true
+						 }else{
+							 this.showBtns1 = true
+							 this.showBtns2 = false
+						 }
+					}
+				}
+
 
 			}
 		},
@@ -333,7 +354,22 @@ export default {
 		},
 		editorChange(e) {
 			this.acceptRecode = e.detail.html
+		},
+		// 权限控制显示按钮
+		async getRoleCode() {
+			let _this = this
+			let res = await this.$api.POST_getRole()
+			if (res.httpStatus == 200) {
+				// console.log(res)
+				if (res.result.roleCode == 400 || res.result.roleCode == 450 || res.result.roleCode == 500) {
+					this.isAccept = true
+				} else {
+					this.isAccept = false
+				}
+
+			}
 		}
+
 
 	}
 }

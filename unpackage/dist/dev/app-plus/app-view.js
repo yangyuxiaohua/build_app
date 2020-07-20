@@ -7079,7 +7079,18 @@ var render = function() {
       ),
       _c(
         "v-uni-view",
-        { staticStyle: { height: "10vh" }, attrs: { _i: 32 } },
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm._$g(32, "v-show"),
+              expression: "_$g(32,'v-show')"
+            }
+          ],
+          staticStyle: { height: "10vh" },
+          attrs: { _i: 32 }
+        },
         [
           _c(
             "u-button",
@@ -7104,6 +7115,48 @@ var render = function() {
               }
             },
             [_vm._v("确认提交")]
+          )
+        ],
+        1
+      ),
+      _c(
+        "v-uni-view",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm._$g(35, "v-show"),
+              expression: "_$g(35,'v-show')"
+            }
+          ],
+          staticStyle: { height: "10vh" },
+          attrs: { _i: 35 }
+        },
+        [
+          _c(
+            "u-button",
+            {
+              attrs: { _i: 36 },
+              on: {
+                click: function($event) {
+                  return _vm.$handleViewEvent($event)
+                }
+              }
+            },
+            [_vm._v("认可原纪录")]
+          ),
+          _c(
+            "u-button",
+            {
+              attrs: { _i: 37 },
+              on: {
+                click: function($event) {
+                  return _vm.$handleViewEvent($event)
+                }
+              }
+            },
+            [_vm._v("重新评定")]
           )
         ],
         1
@@ -10418,6 +10471,15 @@ var render = function() {
                                                 _c(
                                                   "v-uni-text",
                                                   {
+                                                    class: _vm._$g(
+                                                      "40-" +
+                                                        $30 +
+                                                        "-" +
+                                                        $31 +
+                                                        "-" +
+                                                        $32,
+                                                      "c"
+                                                    ),
                                                     attrs: {
                                                       _i:
                                                         "40-" +
@@ -10608,7 +10670,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ./node_modules/css-loader/dist/runtime/api.js */ 16);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, ".assess_content[data-v-200db1f1] {\n  height: calc(100vh);\n  background-color: #F5F5F9;\n}\n.assess_content .projectName[data-v-200db1f1] {\n  line-height: 80upx;\n  border-bottom: 1px solid #ccc;\n  text-align: center;\n}\n.assess_content .assess_content_title[data-v-200db1f1] {\n  padding: 0 20rpx;\n  line-height: 60rpx;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n          justify-content: space-between;\n}\n.assess_content .firstmenu[data-v-200db1f1] {\n  background-color: #fff;\n}\n.assess_content .firstmenu .secmenu[data-v-200db1f1] {\n  background-color: #f2f2f2;\n}\n.assess_content .choseProjectIcon[data-v-200db1f1] {\n  padding: 10px;\n  border: 1px solid #ccc;\n  border-radius: 60px;\n  background-color: #fff;\n  position: fixed;\n  right: 8px;\n  bottom: 58px;\n  z-index: 9999;\n}\n.assess_content .menuLevel1[data-v-200db1f1] {\n  border-bottom: 8rpx solid #F5F5F9;\n}\n.assess_content .menuLevel1 .menuLevel1Content[data-v-200db1f1],\n.assess_content .menuLevel1 .menuLevel2Content[data-v-200db1f1] {\n  height: 80rpx;\n  line-height: 80rpx;\n  font-size: 28rpx;\n  background-color: #FFFFFF;\n  border-bottom: 1px solid #ccc;\n}\n.assess_content .menuLevel1 .menuLevel2 .menuLevel2Content[data-v-200db1f1] {\n  border-bottom: 1px solid #ccc;\n  background-color: #f2f2f2;\n}\n.assess_content .menuLevel1 .menuLevel2 .chosedMenu[data-v-200db1f1] {\n  background-color: #c8c9cc;\n}\n.assess_content .menuLevel1 .menuLevel2 .menuLevel3 .menuLevel3Content[data-v-200db1f1] {\n  background-color: #fff;\n  border-bottom: 1px solid #ccc;\n  font-size: 28rpx;\n  background-color: #f2f2f2;\n}\n.assess_content .menuLevel1 .menuLevel2 .menuLevel3 .chosedMenu[data-v-200db1f1] {\n  background-color: #c8c9cc;\n}\n.assess_content .menuLevel1 .chosedMenu[data-v-200db1f1] {\n  background-color: #c8c9cc;\n}\n.assess_content .showEllipsis[data-v-200db1f1] {\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 1;\n  overflow: hidden;\n}\n", ""]);
+exports.push([module.i, ".assess_content[data-v-200db1f1] {\n  height: calc(100vh);\n  background-color: #F5F5F9;\n}\n.assess_content .projectName[data-v-200db1f1] {\n  line-height: 80upx;\n  border-bottom: 1px solid #ccc;\n  text-align: center;\n}\n.assess_content .assess_content_title[data-v-200db1f1] {\n  padding: 0 20rpx;\n  line-height: 60rpx;\n  display: -webkit-box;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-pack: justify;\n  -webkit-justify-content: space-between;\n          justify-content: space-between;\n}\n.assess_content .firstmenu[data-v-200db1f1] {\n  background-color: #fff;\n}\n.assess_content .firstmenu .secmenu[data-v-200db1f1] {\n  background-color: #f2f2f2;\n}\n.assess_content .choseProjectIcon[data-v-200db1f1] {\n  padding: 10px;\n  border: 1px solid #ccc;\n  border-radius: 60px;\n  background-color: #fff;\n  position: fixed;\n  right: 8px;\n  bottom: 58px;\n  z-index: 9999;\n}\n.assess_content .menuLevel1[data-v-200db1f1] {\n  border-bottom: 8rpx solid #F5F5F9;\n}\n.assess_content .menuLevel1 .menuLevel1Content[data-v-200db1f1],\n.assess_content .menuLevel1 .menuLevel2Content[data-v-200db1f1] {\n  height: 80rpx;\n  line-height: 80rpx;\n  font-size: 28rpx;\n  background-color: #FFFFFF;\n  border-bottom: 1px solid #ccc;\n}\n.assess_content .menuLevel1 .menuLevel2 .menuLevel2Content[data-v-200db1f1] {\n  border-bottom: 1px solid #ccc;\n  background-color: #f2f2f2;\n}\n.assess_content .menuLevel1 .menuLevel2 .chosedMenu[data-v-200db1f1] {\n  background-color: #c8c9cc;\n}\n.assess_content .menuLevel1 .menuLevel2 .menuLevel3 .menuLevel3Content[data-v-200db1f1] {\n  background-color: #fff;\n  border-bottom: 1px solid #ccc;\n  font-size: 28rpx;\n  background-color: #f2f2f2;\n}\n.assess_content .menuLevel1 .menuLevel2 .menuLevel3 .chosedMenu[data-v-200db1f1] {\n  background-color: #c8c9cc;\n}\n.assess_content .menuLevel1 .chosedMenu[data-v-200db1f1] {\n  background-color: #c8c9cc;\n}\n.assess_content .showEllipsis[data-v-200db1f1] {\n  display: -webkit-box;\n  -webkit-box-orient: vertical;\n  -webkit-line-clamp: 1;\n  overflow: hidden;\n}\n.assess_content .ca0cfff[data-v-200db1f1] {\n  color: #0E8AFE;\n}\n", ""]);
 // Exports
 module.exports = exports;
 

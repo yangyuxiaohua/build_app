@@ -51,9 +51,13 @@
 				<u-radio shape="circle" name='5'>不合格</u-radio>
 			</u-radio-group>
 		</view>
-		<view style="height: 10vh;">
+		<view style="height: 10vh;" v-show="showBtns1">
 			<u-button shape="circle" type="warning" @click="onSubmit(true)">暂时保存</u-button>
 			<u-button shape="circle" type="primary" @click="onSubmit(false)">确认提交</u-button>
+		</view>
+		<view style="height: 10vh;" v-show="showBtns2">
+			<u-button shape="circle" type="warning" @click="onSubmit(false)">认可原纪录</u-button>
+			<u-button shape="circle" type="primary" @click="onSubmit(false)">重新评定</u-button>
 		</view>
 	</view>
 </template>
