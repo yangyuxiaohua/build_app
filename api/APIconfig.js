@@ -24,5 +24,8 @@ export default {
 		POST_getRecordByChecklistId:'app/record/getRecordByCheckListId' ,//获取填写的现场评定记录 - 包含附件
 		POST_updatePwd:'user/updateUser',//修改密码
 		POST_Register:'register',//注册
+		POST_updeVersion:'app/auto-update/getAppVersion',//自动更新
+		
+		
 	}
 }

@@ -18,6 +18,7 @@
 		height: calc(100vh - 44px);
 		background-color: #FFFFFF;
 		padding: 0 10upx;
+		user-select: text;
 		.textHeader{
 			h3{
 				font-size: 30upx;

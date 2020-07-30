@@ -3,7 +3,66 @@ export default {
 		return {
 			list: [],
 			checkList: [],
-			wrap: true
+			wrap: true,
+			checkList2: [],
+			list2: [{
+					name: '消防控制室',
+					check: false
+				},
+				{
+					name: '消防水泵房',
+					check: false
+				}, {
+					name: '排烟风机房',
+					check: false
+				},
+				{
+					name: '空调机房',
+					check: false
+				}, {
+					name: '发电机房',
+					check: false
+				},
+				{
+					name: '发配电室',
+					check: false
+				}, {
+					name: '弱电间',
+					check: false
+				},
+				{
+					name: '管道井',
+					check: false
+				}, {
+					name: '储瓶间',
+					check: false
+				}],
+				list3:[{
+					name: '地下层',
+					check: false
+				}, {
+					name: '屋顶层',
+					check: false
+				},
+				{
+					name: '避难层',
+					check: false
+				}, {
+					name: '疏散楼梯',
+					check: false
+				},
+				{
+					name: '疏散走道',
+					check: false
+				}, {
+					name: '电梯前室',
+					check: false
+				},
+				{
+					name: '防火分区',
+					check: false
+				}
+			]
 		}
 	},
 	onShow() {
@@ -43,7 +102,31 @@ export default {
 						check: false
 					})
 				})
-				console.log(this.list)
+				// res1.result.ac3Yards.forEach(item => {
+				// 	this.list.push({
+				// 		name: item.position,
+				// 		check: false
+				// 	})
+				// })
+				// res1.result.ac4BuildingInsulations.forEach(item => {
+				// 	this.list.push({
+				// 		name: item.position,
+				// 		check: false
+				// 	})
+				// })
+				// res1.result.ac5Decorations.forEach(item => {
+				// 	this.list.push({
+				// 		name: item.position,
+				// 		check: false
+				// 	})
+				// })
+				// res1.result.ac6Usages.forEach(item => {
+				// 	this.list.push({
+				// 		name: item.position,
+				// 		check: false
+				// 	})
+				// })
+				// console.log(this.list)
 			}
 		},
 		//确认按钮
@@ -54,12 +137,14 @@ export default {
 			// uni.navigateTo({
 			// 	url: `/pages/Record/Record`,
 			// });
+			this.checkList = this.checkList.concat(this.checkList2)
+			this.checkList = this.checkList.concat(this.checkList3)
 			uni.setStorage({
-				key:'checkList',
-				data:this.checkList,
-				success: function () {
-				        uni.navigateBack();
-				    }
+				key: 'checkList',
+				data: this.checkList,
+				success: function() {
+					uni.navigateBack();
+				}
 			})
 		},
 		checkboxGroupChange(e) {
@@ -67,9 +152,17 @@ export default {
 			this.checkList = e
 
 		},
-		checkboxChange(e) {
-			// console.log(2,e)
+		checkboxGroupChange2(e) {
+			// console.log(1,e)
+			this.checkList2 = e
+
 		},
+		checkboxGroupChange3(e) {
+			// console.log(1,e)
+			this.checkList3 = e
+
+		},
+
 		//切割字符串
 		splitStr(str) {
 			let s = '';

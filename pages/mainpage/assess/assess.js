@@ -320,7 +320,7 @@ export default {
 									// console.log(j)
 									return {
 										standardId: j.standardId,
-										title: j.content,
+										title: j.content + '(' + j.checkTypeName + ')',
 										id: j.standardChecklistId,
 										checkContent: j.checkContent,
 										standardId: j.standardId,

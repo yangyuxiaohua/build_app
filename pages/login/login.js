@@ -11,6 +11,10 @@ export default {
 			current: 0,
 			codeText: '',
 			autologin: false,
+			curVersion: 2, //当前版本号
+			showUpdate: false,
+			content: '检测到有新版本，请点击确定下载更新后使用',
+			updateUrl: ''
 		};
 	},
 	onLoad() {
@@ -22,20 +26,22 @@ export default {
 		// 	}
 		// })
 	},
-	onShow(){
+	onShow() {
+		this.aotuUpdteApp()
+		// console.log(plus.runtime.version)
 		// console.log(uni.getStorageInfoSync())
 		this.autologin = uni.getStorageSync('autoLogin')
 		// console.log(this.autologin)
-		if(this.autologin){
+		if (this.autologin) {
 			let token = uni.getStorageSync('loginInfo')
-			if(token){
+			if (token) {
 				uni.setStorageSync('autoLogin', this.autologin)
 				uni.clearStorageSync()
 				uni.switchTab({
 					url: '/pages/mainpage/home/home'
 				});
 			}
-		}else{
+		} else {
 			uni.clearStorageSync()
 			// console.log(uni.getStorageSync())
 			this.autologin = false
@@ -43,8 +49,8 @@ export default {
 	},
 	methods: {
 		//自动登录
-		autoLogin(){
-					uni.setStorageSync('autoLogin', this.autologin)
+		autoLogin() {
+			uni.setStorageSync('autoLogin', this.autologin)
 		},
 		async login() {
 			let param = {
@@ -64,7 +70,7 @@ export default {
 						});
 					}
 				})
-			}else{
+			} else {
 				this.$refs.uToast.show({
 					title: '账号或密码错误',
 					type: 'error',
@@ -86,7 +92,7 @@ export default {
 						});
 					}
 				})
-			}else{
+			} else {
 				this.$refs.uToast.show({
 					title: '账号或密码错误',
 					type: 'error',
@@ -95,7 +101,7 @@ export default {
 			}
 
 		},
-		
+
 		change(index) {
 			this.current = index;
 		},
@@ -118,11 +124,36 @@ export default {
 				this.$u.toast('倒计时结束后再发送');
 			}
 		},
-		resign(){
-			console.log(1111)
+		resign() {
+			// console.log(1111)
 			uni.navigateTo({
-			    url: '/pages/resign/Resign'
+				url: '/pages/resign/Resign'
 			})
+		},
+		//自动更新
+		async aotuUpdteApp() {
+			let param = {
+				version: this.curVersion
+			}
+			let res = await this.$api.POST_updeVersion(param)
+			console.log(res)
+			if (res.httpStatus == 200) {
+				if (res.result.status == 1) {
+					// console.log(11)
+					console.log(res.result.url)
+					this.updateUrl = res.result.url
+					this.showUpdate = true
+
+				} else {
+					this.showUpdate = false
+				}
+			}
+		},
+		// 更新版本
+		updateVersion() {
+			// console.log(this.updateUrl)
+			plus.runtime.openURL(this.updateUrl)
 		}
+
 	}
 };

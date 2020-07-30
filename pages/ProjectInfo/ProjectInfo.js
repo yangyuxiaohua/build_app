@@ -18,50 +18,58 @@ export default {
 				// lineHeight:'40rpx'
 			},
 			baseInfo: [{
-					label: '工程名称：',
-					value: ''
-				},
-				{
-					label: '工程地址：',
-					value: ''
-				},
-				{
-					label: '建设单位：',
-					value: ''
-				},
-				{
-					label: '联系人：',
-					value: ''
-				},
-				{
-					label: '联系电话：',
-					value: ''
-				},
-				{
-					label: '工程类别：',
-					value: ''
-				},
-				{
-					label: '使用性质：',
-					value: ''
-				},
-				{
-					label: '火灾危险性：',
-					value: ''
-				},
-				{
-					label: '总建筑面积：',
-					value: ''
-				},
-				{
-					label: '凭证文号：',
-					value: ''
-				},
-				{
-					label: '申请日期：',
-					value: ''
-				},
-			],
+						label: '工程名称：',
+						value: ''
+					},
+					{
+						label: '工程地址：',
+						value: ''
+					},
+					{
+						label: '工程类别：',
+						value: ''
+					},
+					{
+						label: '申请日期：',
+						value: ''
+					},
+					{
+						label: '建设单位：',
+						value: ''
+					},
+					{
+						label: '项目负责：',
+						value: ''
+					},
+					{
+						label: '服务机构：',
+						value:''
+					},
+					{
+						label: '项目负责：',
+						value:''
+					},
+					{
+						label: '验收单位：',
+						value: ''
+					},
+					{
+						label: '总建筑物面积：',
+						value: ''
+					},
+					{
+						label: '验收申请文号：',
+						value: ''
+					},
+					{
+						label: '设计审查文号：',
+						value: ''
+					},
+					{
+						label: '特殊建设工程情形：',
+						value: ''
+					},
+				],
 			basetabInfo: [
 				[{
 						label: '建筑名称：',
@@ -175,7 +183,7 @@ export default {
 		//打开折叠面板
 		OnBuild(activeNames) {
 			this.activeIndex = activeNames;
-			console.log(this.project)
+			// console.log(this.project)
 			if (this.project.value) {
 				switch (activeNames) {
 					case '0':
@@ -275,52 +283,44 @@ export default {
 						value: res.result.projectInfo.regionName + res.result.project.detailedAddress
 					},
 					{
-						label: '总建筑物面积：',
-						value: res.result.project.constructionArea + 'm²'
-					},
-					{
-						label: '建设单位：',
-						value: res.result.projectInfo.factoryName
-					},
-					{
-						label: '建设单位项目负责人：',
-						value: res.result.projectInfo.constructionProjectLeader
-					},
-					{
-						label: '建设单位项目负责人电话：',
-						value: res.result.projectInfo.constructionProjectLeaderPhone
-					},
-					{
-						label: '服务机构：',
-						value: res.result.projectInfo.serviceFactoryName
-					},
-					{
-						label: '服务机构项目负责人：',
-						value: res.result.projectInfo.serviceProjectLeader
-					},
-					{
-						label: '服务机构项目负责人电话：',
-						value: res.result.projectInfo.serviceProjectLeaderPhone
-					},
-					{
-						label: '验收单位：',
-						value: res.result.projectInfo.acceptanceFactoryName
-					},
-					{
-						label: '消防验收申请受理凭证文号：',
-						value: res.result.project.certificateNumber
-					},
-					{
-						label: '消防设计审查意见书文号：',
-						value: res.result.project.reviewCertificateNumber
-					},
-					{
 						label: '工程类别：',
 						value: res.result.projectInfo.typeName
 					},
 					{
 						label: '申请日期：',
 						value: this.getTime(res.result.projectInfo.time)
+					},
+					{
+						label: '建设单位：',
+						value: res.result.projectInfo.factoryName
+					},
+					{
+						label: '项目负责：',
+						value:res.result.projectInfo.constructionProjectLeader? res.result.projectInfo.constructionProjectLeader + '(' + res.result.projectInfo.constructionProjectLeaderPhone + ')' :'暂无'
+					},
+					{
+						label: '服务机构：',
+						value: res.result.projectInfo.serviceFactoryName
+					},
+					{
+						label: '项目负责：',
+						value: res.result.projectInfo.serviceProjectLeader ? res.result.projectInfo.serviceProjectLeader + '(' + res.result.projectInfo.serviceProjectLeaderPhone + ')' :'暂无'
+					},
+					{
+						label: '验收单位：',
+						value: res.result.projectInfo.acceptanceFactoryName
+					},
+					{
+						label: '总建筑物面积：',
+						value: res.result.project.constructionArea + 'm²'
+					},
+					{
+						label: '验收申请文号：',
+						value: res.result.project.certificateNumber
+					},
+					{
+						label: '设计审查文号：',
+						value: res.result.project.reviewCertificateNumber
 					},
 					{
 						label: '特殊建设工程情形：',

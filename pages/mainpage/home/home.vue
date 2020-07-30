@@ -96,7 +96,6 @@
 		justify-content: start;
 		.imgBox {
 			width: 100%;
-
 			image {
 				width: 100%;
 				height: 300rpx;
@@ -106,7 +105,7 @@
 		.projectChose {
 			width: 100%;
 			height: 250rpx;
-			margin-top: 20rpx;
+			// margin-top: 20rpx;
 			background-color: #F5F1EF;
 			position: relative;
 
@@ -145,7 +144,7 @@
 				}
 				.constuStatistical{
 					display: flex;
-					margin-top: 10rpx;
+					// margin-top: 10rpx;
 					justify-content: center;
 					.uLineProgressBox{
 						width: 70%;
@@ -207,7 +206,7 @@
 
 		.homeMenu {
 			flex: 1;
-			margin-top: 40rpx;
+			margin-top: 20rpx;
 			// align-items: center;
 
 		}

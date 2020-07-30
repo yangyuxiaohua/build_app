@@ -14,6 +14,7 @@ export default {
 			isAccept: false, //判断是否是验收单位
 			showBtns1: true, //其他单位的按钮组
 			showBtns2: false, // 验收单位的按钮组
+			recognitionOriginal:false, //验收单位认可原纪录新字段
 		}
 	},
 	onLoad() {
@@ -197,7 +198,8 @@ export default {
 					projectId: this.projectId,
 					result: this.value ? this.value : '',
 					saveTemp: bool,
-					standardId: this.standardId
+					standardId: this.standardId,
+					recognitionOriginal: this.recognitionOriginal
 				}
 				let res = await this.$api.POST_submitRecode(param)
 				if (res.httpStatus == 200) {
@@ -226,7 +228,8 @@ export default {
 					projectId: this.projectId,
 					result: this.value ? this.value : '',
 					saveTemp: bool,
-					standardId: this.standardId
+					standardId: this.standardId,
+					recognitionOriginal: this.recognitionOriginal
 				}
 				let res = await this.$api.POST_reviewerReplace(param)
 				if (res.httpStatus == 200) {
@@ -326,14 +329,17 @@ export default {
 					if (!res.result.result) {
 						this.showBtns1 = true
 						this.showBtns2 = false
+						this.recognitionOriginal = false
 					} else {
                          if(res.result.result.isApp==-1){
 							 // console.log(111)
 							 this.showBtns1 = false
 							 this.showBtns2 = true
+							 this.recognitionOriginal = true
 						 }else{
 							 this.showBtns1 = true
 							 this.showBtns2 = false
+							 this.recognitionOriginal = false
 						 }
 					}
 				}

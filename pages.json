@@ -90,6 +90,18 @@
 			"style": {
 				"navigationBarTitleText": "个人信息"
 			}
+		},
+		{
+			"path": "pages/message/MessageNotification",
+			"style": {
+				"navigationBarTitleText": "消息通知"
+			}
+		},
+		{
+			"path": "pages/laws/Laws",
+			"style": {
+				"navigationBarTitleText": "政策法规"
+			}
 		}
 	],
 	"globalStyle": {
