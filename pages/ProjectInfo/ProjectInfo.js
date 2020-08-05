@@ -269,7 +269,7 @@ export default {
 			}
 			let res = await this.$api.POST_getProjectInfo(param)
 			if (res.httpStatus == 200) {
-				// console.log(res)
+				// console.log(res.result.project.)
 				let usageName = res.result.projectInfoUsages.map(item => {
 					return item.usageName
 				})
@@ -288,7 +288,7 @@ export default {
 					},
 					{
 						label: '申请日期：',
-						value: this.getTime(res.result.projectInfo.time)
+						value: this.getTime(res.result.project.createTime)
 					},
 					{
 						label: '建设单位：',

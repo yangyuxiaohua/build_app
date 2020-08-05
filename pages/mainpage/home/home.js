@@ -305,13 +305,13 @@ export default {
 				});
 			} else if (i == 'zhengce') {
 				uni.navigateTo({
-					// url: '/pages/laws/Laws'
-					url: ''
+					url: '/pages/laws/Laws'
+					// url: ''
 				})
 			} else {
 				uni.navigateTo({
-					// url: '/pages/message/MessageNotification'
-					url: ''
+					url: '/pages/message/MessageNotification'
+					// url: ''
 				})
 			}
 		},

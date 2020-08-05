@@ -1,7 +1,12 @@
 <template>
 	<view class="message_content">
-		<u-tabs-swiper ref="tabs" :list="list" :is-scroll="true"></u-tabs-swiper>
-
+		<u-tabs-swiper ref="tabs" name="cate_name" :list="list" :is-scroll="false"></u-tabs-swiper @change = 'tabsChange()'>
+			<!-- <swiper-item class="swiper-item" v-for="(item, index) in tabs" :key="index">
+				<scroll-view scroll-y style="height: 800rpx;width: 100%;" @scrolltolower="onreachBottom">
+					...
+				</scroll-view>
+			</swiper-item>
+		</swiper> -->
 	</view>
 </template>
 
