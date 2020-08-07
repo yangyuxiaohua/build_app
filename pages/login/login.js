@@ -136,7 +136,7 @@ export default {
 				version: this.curVersion
 			}
 			let res = await this.$api.POST_updeVersion(param)
-			console.log(res)
+			// console.log(res)
 			if (res.httpStatus == 200) {
 				if (res.result.status == 1) {
 					// console.log(11)

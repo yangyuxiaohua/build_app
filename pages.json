@@ -50,7 +50,7 @@
 		{
 			"path": "pages/Require/Require",
 			"style": {
-				"navigationBarTitleText": "验收要求"
+				"navigationBarTitleText": "技术要求"
 			}
 		},
 		{
@@ -101,6 +101,11 @@
 			"path": "pages/laws/Laws",
 			"style": {
 				"navigationBarTitleText": "政策法规"
+			}
+		},{
+			"path": "pages/acceptPerson/AcceptPerson",
+			"style": {
+				"navigationBarTitleText": "验收人员"
 			}
 		}
 	],

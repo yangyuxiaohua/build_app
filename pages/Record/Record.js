@@ -14,7 +14,23 @@ export default {
 			isAccept: false, //判断是否是验收单位
 			showBtns1: true, //其他单位的按钮组
 			showBtns2: false, // 验收单位的按钮组
-			recognitionOriginal:false, //验收单位认可原纪录新字段
+			recognitionOriginal: false, //验收单位认可原纪录新字段
+			// AudioChoseTab: [ //录音功能选择列表
+			// 	{
+			// 		text: '录音',
+			// 		// color: 'blue',
+			// 		fontSize: 32,
+			// 		borderBottom: '1px solid #000'
+			// 	},
+			// 	{
+			// 		text: '从文件夹中选择',
+			// 		// color: 'blue',
+			// 		fontSize: 32
+			// 	}
+			// ],
+			// showAudioTab: false,
+			// recorderManager:{},// 录音对象
+			// voicePath:''
 		}
 	},
 	onLoad() {
@@ -24,17 +40,24 @@ export default {
 		uni.getStorage({
 			key: 'projectInfo',
 			success: function(res) {
-				// console.log(res.data);
 				_this.projectId = _this.splitStr(res.data)[0]
 				_this.getContent()
 			}
 		})
-
+		//录音功能
+	// 	this.recorderManager = uni.getRecorderManager();
+	
+	// 	let self = this;
+	// 	this.recorderManager.onStop(function(res) {
+	// 		console.log('recorder stop' + JSON.stringify(res));
+	// 		self.voicePath = res.tempFilePath;
+	// 	});
 
 
 	},
 	onShow() {
 		let _this = this
+		// console.log(_this)
 		uni.getStorage({
 			key: 'checkList',
 			success: function(res) {
@@ -100,6 +123,7 @@ export default {
 				url: `/pages/rules/Rule`,
 			});
 		},
+		//上传图片
 		uploadImage(type) {
 			uni.chooseImage({
 				success: (chooseImageRes) => {
@@ -172,6 +196,61 @@ export default {
 			})
 			// })
 		},
+		//上传录音
+		// uploadAudio(type) {
+		// 	// console.log(type)
+		// 	this.showAudioTab = true
+		// },
+		// //选中录音的功能
+		// clickAudioChoseTab(index) {
+		// 	// console.log(index)
+		// 	if (index == 0) {
+		// 		this.startAudio()
+		// 	} else {
+		// 		this.chosedAudio()
+		// 	}
+		// },
+		// //开始录音功能
+		// startAudio() {
+		// 	console.log('开始录音')
+		// 	console.log(this.recorderManager) 
+		// 	this.recorderManager.start();
+			
+		// },
+		// //选择录音上传
+		// chosedAudio() {
+		// 	let _this = this
+		// 	var REQUESTCODE = 1;
+		// 	var main = plus.android.runtimeMainActivity();
+		// 	var Intent = plus.android.importClass('android.content.Intent');
+		// 	var intent = new Intent(Intent.ACTION_GET_CONTENT);
+
+		// 	// intent.setType("*/*"); //设置类型，任意类型
+		// 	//intent.setType("image/*");
+		// 	intent.setType("audio/*"); //选择音频
+		// 	//intent.setType("video/*"); //选择视频 （mp4 3gp 是android支持的视频格式）
+
+		// 	intent.addCategory(Intent.CATEGORY_OPENABLE);
+		// 	main.startActivityForResult(intent, REQUESTCODE);
+
+		// 	main.onActivityResult = function(requestCode, resultCode, data) {
+		// 		if (REQUESTCODE == requestCode) {
+		// 			var context = main;
+		// 			plus.android.importClass(data);
+		// 			// 获得文件路径
+		// 			var fileData = data.getData();
+		// 			var path = plus.android.invoke(fileData, "getPath");
+		// 			console.log("path:" + path);
+
+		// 			// 判断文件类型
+		// 			var resolver = context.getContentResolver();
+		// 			var fileType = plus.android.invoke(resolver, "getType", fileData);
+		// 			console.log("fileType:" + fileType);
+		// 			console.log(this);
+		// 			_this .saveFile(path, 'MP3')
+		// 		}
+		// 	}
+		// },
 		//切割字符串
 		splitStr(str) {
 			let s = '';
@@ -305,7 +384,7 @@ export default {
 				standardId: this.standardId
 			}
 			let res = await this.$api.POST_getRecordByChecklistId(param)
-			console.log(res)
+			// console.log(res)
 			if (res.httpStatus == 200) {
 				if (this.isNoDataReview) {
 					// console.log('现场')
@@ -331,16 +410,16 @@ export default {
 						this.showBtns2 = false
 						this.recognitionOriginal = false
 					} else {
-                         if(res.result.result.isApp==-1){
-							 // console.log(111)
-							 this.showBtns1 = false
-							 this.showBtns2 = true
-							 this.recognitionOriginal = true
-						 }else{
-							 this.showBtns1 = true
-							 this.showBtns2 = false
-							 this.recognitionOriginal = false
-						 }
+						if (res.result.result.isApp == -1) {
+							// console.log(111)
+							this.showBtns1 = false
+							this.showBtns2 = true
+							this.recognitionOriginal = true
+						} else {
+							this.showBtns1 = true
+							this.showBtns2 = false
+							this.recognitionOriginal = false
+						}
 					}
 				}
 

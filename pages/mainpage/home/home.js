@@ -39,6 +39,11 @@ export default {
 					name: 'xiaoxi',
 					text: '消息通知',
 					imgSrc: '../../../static/img/07.png'
+				},
+				{
+					name: 'renyuan',
+					text: '验收人员',
+					imgSrc: '../../../static/img/acceptPerson.png'
 				}
 			],
 			percent: 0, //建设进度条
@@ -57,7 +62,7 @@ export default {
 	},
 	onLoad() {},
 	onShow() {
-		this.projectName='选择需验收的建设工程'
+		this.projectName = '选择需验收的建设工程'
 		this.getUserInformation()
 		this.getRole()
 		// uni.removeStorageSync('assess')
@@ -104,7 +109,7 @@ export default {
 			let _this = this
 			let res = await this.$api.POST_getUserInfo()
 			if (res.httpStatus == 200) {
-				console.log(res)
+				// console.log(res)
 				console.log(res.result)
 				uni.setStorageSync('loginInfo', res.result.appToken)
 				uni.setStorageSync('userInfo', res.result)
@@ -115,7 +120,8 @@ export default {
 		//获取项目列表
 		async getProjectLsit() {
 			let param = {
-				userId: this.userId
+				userId: this.userId,
+				categoryCode: this.categoryCode
 			}
 			let res1 = await this.$api.POST_getProjectsByUser(param)
 			if (res1.httpStatus == 200) {
@@ -130,7 +136,7 @@ export default {
 						value: ''
 					}, ...this.list],
 					this.projectName = this.list[0].label
-                    this.show = true
+				this.show = true
 			}
 		},
 		//获取用户角色
@@ -139,6 +145,12 @@ export default {
 			let res = await this.$api.POST_getRole()
 			// console.log(res)
 			if (res.httpStatus == 200) {
+				if (res.result.roleCode == 800 || res.result.roleCode == 850 || res.result.roleCode == 900) {
+					this.categoryCode = 102
+				} else if (res.result.roleCode == 600 || res.result.roleCode == 650 || res.result.roleCode == 700) {
+					this.categoryCode = 101
+				}
+				//权限显示
 				if (res.result.roleCode == 600 || res.result.roleCode == 650 || res.result.roleCode == 700 || res.result.roleCode ==
 					800 || res.result.roleCode == 850 || res.result.roleCode == 900) {
 					this.content1 = false
@@ -178,6 +190,11 @@ export default {
 							name: 'xiaoxi',
 							text: '消息通知',
 							imgSrc: '../../../static/img/07.png'
+						},
+						{
+							name: 'renyuan',
+							text: '验收人员',
+							imgSrc: '../../../static/img/acceptPerson.png'
 						}
 					]
 					uni.setStorageSync('defaultAssess', 'xianchang')
@@ -208,6 +225,11 @@ export default {
 							name: 'xiaoxi',
 							text: '消息通知',
 							imgSrc: '../../../static/img/07.png'
+						},
+						{
+							name: 'renyuan',
+							text: '验收人员',
+							imgSrc: '../../../static/img/acceptPerson.png'
 						}
 					]
 					uni.setStorageSync('defaultAssess', 'jungong')
@@ -238,6 +260,11 @@ export default {
 							name: 'xiaoxi',
 							text: '消息通知',
 							imgSrc: '../../../static/img/07.png'
+						},
+						{
+							name: 'renyuan',
+							text: '验收人员',
+							imgSrc: '../../../static/img/acceptPerson.png'
 						}
 					]
 					uni.setStorageSync('defaultAssess', 'xiaofang')
@@ -278,6 +305,11 @@ export default {
 							name: 'xiaoxi',
 							text: '消息通知',
 							imgSrc: '../../../static/img/07.png'
+						},
+						{
+							name: 'renyuan',
+							text: '验收人员',
+							imgSrc: '../../../static/img/acceptPerson.png'
 						}
 					]
 					uni.setStorageSync('defaultAssess', 'xianchang')
@@ -308,9 +340,14 @@ export default {
 					url: '/pages/laws/Laws'
 					// url: ''
 				})
-			} else {
+			} else if (i == 'xiaoxi') {
 				uni.navigateTo({
 					url: '/pages/message/MessageNotification'
+					// url: ''
+				})
+			} else {
+				uni.navigateTo({
+					url: '/pages/acceptPerson/AcceptPerson'
 					// url: ''
 				})
 			}

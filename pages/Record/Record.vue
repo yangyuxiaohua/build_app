@@ -32,13 +32,16 @@
 		<view>
 			<u-button type="primary" size="mini" @click=
 			"uploadImage('PNG')">上传图片</u-button>
+			<!-- <u-button type="primary" size="mini" @click=
+			"uploadAudio('MP3')">上传录音</u-button> -->
 			<u-button type="primary" size="mini" @click=
 			"uploadVideo('MP4')">上传视频</u-button>
 			<!-- <u-button type="primary" size="mini" @click=
 			"uploadFiles('MP4')">视频上传</u-button>
-			<u-button type="primary" size="mini" @click=
-			"uploadFiles('MP3')">录音上传</u-button> -->
+			 -->
 		</view>
+		
+		
 		<view style="background-color: #ececec;border-top:1px solid #ccc;border-bottom:1px solid #ccc;">
 			<text>评定结论:</text>
 			<view>
@@ -59,6 +62,10 @@
 			<u-button shape="circle" type="warning" @click="onSubmit(false)">认可原记录</u-button>
 			<u-button shape="circle" type="primary" @click="onSubmit(false)">重新评定</u-button>
 		</view>
+		<!-- 录音 -->
+		<!-- <view class="uActionSheetWrapper">
+			<u-action-sheet :list="AudioChoseTab" v-model="showAudioTab" :cancel-btn="true" @click="clickAudioChoseTab"></u-action-sheet>
+		</view> -->
 	</view>
 </template>
 

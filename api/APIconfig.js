@@ -25,6 +25,8 @@ export default {
 		POST_updatePwd:'user/updateUser',//修改密码
 		POST_Register:'register',//注册
 		POST_updeVersion:'app/auto-update/getAppVersion',//自动更新
+		POST_getUserByAccount:'app/user/getUserByAccount',//根据账号->查询人员信息
+		
 		
 		
 	}
