@@ -33,13 +33,31 @@ export default {
 		},
 		//确认添加验收人员
 		async sureAdd() {
-			let param = {
+			if(this.account==''||this.password == ''){
+				this.$refs.uToast.show({
+					title:'账号密码不能为空！！!',
+					type: 'warning',
+				})
+			}else{
+				let param = {
 				phone: this.account,
 				password: this.password,
 				system: 1
 			}
 			let res = await this.$api.POST_getUserByAccount(param)
 			if (res.httpStatus == 200) {
+				// console.log(this.list)
+				let addFlag = true
+				addFlag = this.list.every(item=>{
+                   return item.name!=res.result.username
+				})
+				if(!addFlag) {
+					this.$refs.uToast.show({
+						title: '人员已存在！',
+						type: 'default',
+					})
+					return
+				};
 				let timestamp = (new Date()).getTime()
 				let time = this.getTime(timestamp)
 				// console.log(this.list)
@@ -48,6 +66,7 @@ export default {
 					checked: false,
 					time
 				})
+				// console.log(res)
 				uni.setStorageSync('acceptPersonList', this.list)
 				this.$refs.uToast.show({
 					title: '添加成功',
@@ -60,6 +79,8 @@ export default {
 					type: 'warning',
 				})
 			}
+			}
+			
 			// console.log(res)
 
 		},

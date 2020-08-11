@@ -13,8 +13,8 @@
 	.rule_content{
 		height: calc(100vh - 44px);
 		// background-color: #1F1E27;
-		.u-search{
-			padding-top: 10px;
-		}
+		padding: 20upx 10upx;
+		line-height: 50rpx;
+		
 	}
 </style>

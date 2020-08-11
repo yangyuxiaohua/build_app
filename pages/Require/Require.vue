@@ -13,7 +13,14 @@
 	.require_content{
 		height: calc(100vh - 44px);
 		// background-color: #1F1E27;
-		padding-left:10upx ;
+		// padding-left:10upx ;
+		user-select: text;
+		line-height: 50rpx;
+		padding: 0 10upx;
+		// p{
+		// text-indent: 30rpx; 
+			
+		// }
 		.u-search{
 			padding: 10px 0;
 		}

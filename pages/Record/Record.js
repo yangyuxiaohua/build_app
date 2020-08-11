@@ -45,13 +45,13 @@ export default {
 			}
 		})
 		//录音功能
-	// 	this.recorderManager = uni.getRecorderManager();
-	
-	// 	let self = this;
-	// 	this.recorderManager.onStop(function(res) {
-	// 		console.log('recorder stop' + JSON.stringify(res));
-	// 		self.voicePath = res.tempFilePath;
-	// 	});
+		// 	this.recorderManager = uni.getRecorderManager();
+
+		// 	let self = this;
+		// 	this.recorderManager.onStop(function(res) {
+		// 		console.log('recorder stop' + JSON.stringify(res));
+		// 		self.voicePath = res.tempFilePath;
+		// 	});
 
 
 	},
@@ -215,7 +215,7 @@ export default {
 		// 	console.log('开始录音')
 		// 	console.log(this.recorderManager) 
 		// 	this.recorderManager.start();
-			
+
 		// },
 		// //选择录音上传
 		// chosedAudio() {
@@ -267,6 +267,24 @@ export default {
 		async onSubmit(bool) {
 			// console.log(this.)
 			let param = {};
+			let otherUsernames = uni.getStorageSync('acceptPersonList')
+				console.log(otherUsernames)
+			if (otherUsernames) {
+				otherUsernames = otherUsernames.map(item => {
+					// console.log(item)
+					return item.name
+					
+
+				})
+				console.log(otherUsernames)
+				otherUsernames = otherUsernames.join(',');
+				// console.log(uni.getStorageInfoSync())
+			} else {
+				otherUsernames = ''
+			}
+
+
+
 			if (this.isNoDataReview) {
 				param = {
 					checkNum: this.checkNum,
@@ -278,7 +296,8 @@ export default {
 					result: this.value ? this.value : '',
 					saveTemp: bool,
 					standardId: this.standardId,
-					recognitionOriginal: this.recognitionOriginal
+					recognitionOriginal: this.recognitionOriginal,
+					otherUsernames
 				}
 				let res = await this.$api.POST_submitRecode(param)
 				if (res.httpStatus == 200) {
@@ -308,7 +327,9 @@ export default {
 					result: this.value ? this.value : '',
 					saveTemp: bool,
 					standardId: this.standardId,
-					recognitionOriginal: this.recognitionOriginal
+					recognitionOriginal: this.recognitionOriginal,
+					otherUsernames
+					// otherUsernames:uni.getStorageInfoSync('acceptPersonList')
 				}
 				let res = await this.$api.POST_reviewerReplace(param)
 				if (res.httpStatus == 200) {

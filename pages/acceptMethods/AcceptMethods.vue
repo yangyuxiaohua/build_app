@@ -3,6 +3,7 @@
 		<view v-html="methods">
 			
 		</view>
+		<!-- <rich-text>{{methods}}</rich-text> -->
 	</view>
 </template>
 
@@ -14,8 +15,13 @@
 		height: calc(100vh - 44px);
 		// background-color: #1F1E27;
 		padding: 20upx 10upx;
-		.u-search{
-			padding-top: 10px;
-		}
+		line-height: 50rpx;
+		// p{
+			// line-height: 30rpx;
+			// text-indent: 40rpx;
+		// }
+		// .u-search{
+		// 	padding-top: 10px;
+		// }
 	}
 </style>

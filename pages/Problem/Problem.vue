@@ -19,6 +19,7 @@
 		background-color: #FFFFFF;
 		padding: 0 10upx;
 		user-select: text;
+		line-height: 50rpx;
 		.textHeader{
 			h3{
 				font-size: 30upx;
