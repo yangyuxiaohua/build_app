@@ -67,7 +67,7 @@
 			justify-content: space-between;
 			border-bottom: 2px solid #ccc;
 			color: #000;
-			font-size: 36rpx;
+			// font-size: 36rpx;
 
 			.name,
 			.time {
@@ -83,12 +83,15 @@
 
 			.personList {
 				display: flex;
-				line-height: 100rpx;
+				// line-height: 100rpx;
+				// align-items: center;
+				min-height: 100rpx;
 				padding-left: 20rpx;
 
 				.personInfo {
 					flex: 1;
-
+                    display: flex;
+					align-items: center;
 					text {
 						display: inline-block;
 						width: 50%;
@@ -96,6 +99,7 @@
 
 					.text1 {
 						text-indent: 50rpx;
+						// line-height: 100rpx;
 					}
 
 					.text2 {

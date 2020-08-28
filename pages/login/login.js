@@ -11,7 +11,7 @@ export default {
 			current: 0,
 			codeText: '',
 			autologin: false,
-			curVersion: 3, //当前版本号
+			curVersion: 7 , //当前版本号
 			showUpdate: false,
 			content: '检测到有新版本，请点击确定下载更新后使用',
 			updateUrl: ''

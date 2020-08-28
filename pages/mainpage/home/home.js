@@ -110,7 +110,7 @@ export default {
 			let res = await this.$api.POST_getUserInfo()
 			if (res.httpStatus == 200) {
 				// console.log(res)
-				console.log(res.result)
+				// console.log(res.result)
 				uni.setStorageSync('loginInfo', res.result.appToken)
 				uni.setStorageSync('userInfo', res.result)
 				this.userId = res.result.userId

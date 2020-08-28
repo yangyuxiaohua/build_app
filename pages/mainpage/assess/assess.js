@@ -61,7 +61,7 @@ export default {
 
 		switch (titleText) {
 			case 'ziliao':
-				this.titleText = '资料评审'
+				this.titleText = '资料核查'
 				this.titleType = 1
 				break;
 			case 'jungong':

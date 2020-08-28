@@ -59,8 +59,8 @@
 			<u-button shape="circle" type="primary" @click="onSubmit(false)">确认提交</u-button>
 		</view>
 		<view style="height: 10vh;" v-show="showBtns2">
-			<u-button shape="circle" type="warning" @click="onSubmit(false)">认可原记录</u-button>
-			<u-button shape="circle" type="primary" @click="onSubmit(false)">重新评定</u-button>
+			<u-button shape="circle" type="warning" @click="onSubmit(false,true)">认可原记录</u-button>
+			<u-button shape="circle" type="primary" @click="onSubmit(false,false)">重新评定</u-button>
 		</view>
 		<!-- 录音 -->
 		<!-- <view class="uActionSheetWrapper">

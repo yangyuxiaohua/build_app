@@ -1,4 +1,6 @@
+// import uniBadge from "@/components/uni-badge/uni-badge.vue"
 export default {
+	// components: {uniBadge},
 	data() {
 		return {
 			shadowStyle: {
@@ -8,43 +10,190 @@ export default {
 			},
 			list: [{
 				name: '全部',
-				num: 9
+				num: '1',
+				type: '0',
 			}, {
 				name: '公告',
-				num: 5
+				num: '1',
+				type: 1,
 			}, {
 				name: '通知',
-				num: 2
+				num: '1',
+				type: 5,
 			}, {
 				name: '提醒',
-				num: 7
+				num: '1',
+				type: 10,
 			}],
 			ubadgeOffset: [10, 20],
 			current: 0,
-			messageList: [
-				{
-				allMessagePublisher: '系统自动提醒',
-				allMessageTime: '2020-06-12 13:35',
-				content: "海外网8月5日电 当地时间4日傍晚，黎巴嫩首都贝鲁特港口区发生剧烈爆炸。据美联社最新报道，黎巴嫩红十字会官员称，事故造成至少100人遇难，4000多人受伤。当地时间8月4日晚， 贝鲁特港口地区发生剧烈爆炸。 据贝鲁特省长的说法， 该市一半建筑物受损， 医院因大量伤者而人满为患。据黎巴嫩总理哈桑迪亚卜在最高国防委员会会议上称， 爆炸是2750吨硝酸铵在港口不当储存6年而引起的。 黎巴嫩政府宣布为悲剧遇难者哀悼三天。 包括以色列在内的许多国家已为黎巴嫩提供援助， 卡塔尔和伊拉克向贝鲁特派出野战医院， 而世卫组织向贝鲁特发出用于治疗伤员的药品和外科包。（ 海外网 刘强）本文系版权作品， 未经授权严禁转载。 海外视野， 中国立场， 浏览人民日报海外版官网—— 海外网www.haiwainet.cn或“ 海客” 客户端， 领先一步获取权威资讯。"
-			}, {
-				allMessagePublisher: '系统自动提醒',
-				allMessageTime: '2020-06-12 13:35',
-				content: "海外网8月5日电 当地时间4日傍晚，黎巴嫩首都贝鲁特港口区发生剧烈爆炸。"
-			},
-			]
-			// tabs:[],
-			// 因为内部的滑动机制限制，请将tabs组件和swiper组件的current用不同变量赋值
-			// current: 0, // tabs组件的current值，表示当前活动的tab选项
-			// swiperCurrent: 0, // swiper组件的current值，表示当前那个swiper-item是活动的
+			messageList: [],
+			pageNum: 0,
+			currentPage: 1,
+			isLoadMore: false,
+			loadStatus: 'loading', //加载样式：more-加载前样式，loading-加载中样式，nomore-没有数据样式
+			flag: true,
+			type: '0',
+			size: 8,
+			roleCode: '',
+			roleShow: false
+
 		}
-
 	},
-	onShow() {
-
+	onLoad() {
+		this.tabsChange(0, this.type)
+		this.getRole()
+	},
+	onShow() {},
+	//下拉刷新
+	onPullDownRefresh() {
+		// console.log(1)
+		this.currentPage = 1
+		this.getMessageList(this.currentPage)
+		this.isLoadMore = false
+	},
+	// 底部上拉
+	onReachBottom() {
+		this.isLoadMore = true
+		this.currentPage += 1
+		if (this.currentPage > this.pageNum) {
+			this.loadStatus = 'nomore'
+			this.currentPage = this.pageNum
+		} else {
+			this.getLawsMore()
+		}
 	},
 	methods: {
-		tabsChange(index) {
+		tabsChange(index, type) {
 			this.current = index;
+			this.type = type
+			this.currentPage = 1
+			this.getMessageList(this.currentPage)
+			if (type == 5) {
+				if (this.roleCode != 500 && this.roleCode != 700 && this.roleCode != 900) {
+					this.roleShow = true
+
+				} else {
+					this.roleShow = false
+				}
+
+			} else {
+				this.roleShow = false
+			}
 		},
+		toReleaseNotice() {
+			uni.navigateTo({
+				url: "/pages/releaseNotice/ReleaseNotice"
+			})
+		},
+		//获取消息列表
+		async getMessageList(page) {
+			let param = {
+				size: this.size,
+				start: page,
+				type: this.type
+			}
+			let res = await this.$api.POST_pageNotice(param)
+			// console.log(res)
+			// 获取数字
+			this.list = [{
+					name: '全部',
+					num: res.result.result.noticeNums + res.result.result.publicNums + res.result.result.remindNums,
+					type: '0',
+				}, {
+					name: '公告',
+					num: res.result.result.publicNums,
+					type: 1,
+				}, {
+					name: '通知',
+					num: res.result.result.noticeNums,
+					type: 5,
+				}, {
+					name: '提醒',
+					num: res.result.result.remindNums,
+					type: 10,
+				}],
+				// console.log(this.list)
+				//===============
+				this.pageNum = res.result.pageNum
+			this.messageList = res.result.result.notices.map(item => {
+				item.createTime = this.getTime(item.createTime)
+				return item
+			})
+			this.loadStatus = 'nomore'
+			uni.stopPullDownRefresh();
+		},
+		async getLawsMore() {
+			if (this.flag) {
+				this.loadStatus = 'loading'
+				let param = {
+					size: this.size,
+					start: this.currentPage,
+					type: this.type
+				}
+				let res = await this.$api.POST_pageNotice(param)
+				// console.log(res)
+				// 获取数字
+				this.list = [{
+						name: '全部',
+						num: res.result.result.noticeNums + res.result.result.publicNums + res.result.result.remindNums,
+						type: '0',
+					}, {
+						name: '公告',
+						num: res.result.result.publicNums,
+						type: 1,
+					}, {
+						name: '通知',
+						num: res.result.result.noticeNums,
+						type: 5,
+					}, {
+						name: '提醒',
+						num: res.result.result.remindNums,
+						type: 10,
+					}],
+				this.pageNum = res.result.pageNum
+				this.messageList = this.messageList.concat(res.result.result.notices.map(item => {
+					item.createTime = this.getTime(item.createTime)
+					return item
+				}))
+				this.flag = false
+				// this.list = this.list.concat(res.result.result.map(item => {
+				// 	item.createTime = this.getlTime(item.createTime)
+				// 	return item
+				// }))
+				// console.log(this.messageList)
+				this.isLoadMore = false
+				this.loadStatus = 'nomore'
+				let _THIS = this
+				setTimeout(function() {
+					_THIS.flag = true
+				}, 1000)
+			}
+
+		},
+		//权限控制
+		async getRole() {
+			let res = await this.$api.POST_getRole()
+			this.roleCode = res.result.roleCode
+		},
+
+		getTime(time) {
+			if (time && time != 'null') {
+				var strDate = ''
+				var date = new Date(time); //时间戳为10位需*1000，时间戳为13位的话不需乘1000
+				var Y = date.getFullYear() + '-';
+				var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+				var D = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + ' ';
+				var h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
+				var m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes());
+				// var s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
+
+				strDate = Y + M + D + h + m;
+				return strDate;
+			} else {
+				return
+			}
+
+		}
 	}
 }

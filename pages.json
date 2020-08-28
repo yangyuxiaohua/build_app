@@ -94,13 +94,28 @@
 		{
 			"path": "pages/message/MessageNotification",
 			"style": {
-				"navigationBarTitleText": "消息通知"
+				"navigationBarTitleText": "消息通知",
+				"enablePullDownRefresh": true, //设置为true表示当前页面开启下拉刷新
+				"backgroundTextStyle": "dark" //下拉 loading 的样式，仅支持 dark/light
 			}
 		},
 		{
+			"path": "pages/releaseNotice/ReleaseNotice",
+			"style": {
+				"navigationBarTitleText": "发布通知"
+			}
+		},	
+		{
 			"path": "pages/laws/Laws",
 			"style": {
-				"navigationBarTitleText": "政策法规"
+				"navigationBarTitleText": "政策法规",
+				"enablePullDownRefresh": true, //设置为true表示当前页面开启下拉刷新
+				"backgroundTextStyle": "dark" //下拉 loading 的样式，仅支持 dark/light
+			}
+		},{
+			"path": "pages/lwsDetails/LawsDetails",
+			"style": {
+				"navigationBarTitleText": "法规详情"
 			}
 		},{
 			"path": "pages/acceptPerson/AcceptPerson",

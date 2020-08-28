@@ -14,7 +14,6 @@ export default {
 			isAccept: false, //判断是否是验收单位
 			showBtns1: true, //其他单位的按钮组
 			showBtns2: false, // 验收单位的按钮组
-			recognitionOriginal: false, //验收单位认可原纪录新字段
 			// AudioChoseTab: [ //录音功能选择列表
 			// 	{
 			// 		text: '录音',
@@ -264,7 +263,7 @@ export default {
 			return s
 		},
 		// 提交
-		async onSubmit(bool) {
+		async onSubmit(bool,recognitionOriginal=false) {
 			// console.log(this.)
 			let param = {};
 			let otherUsernames = uni.getStorageSync('acceptPersonList')
@@ -296,7 +295,7 @@ export default {
 					result: this.value ? this.value : '',
 					saveTemp: bool,
 					standardId: this.standardId,
-					recognitionOriginal: this.recognitionOriginal,
+					recognitionOriginal,
 					otherUsernames
 				}
 				let res = await this.$api.POST_submitRecode(param)
@@ -327,7 +326,7 @@ export default {
 					result: this.value ? this.value : '',
 					saveTemp: bool,
 					standardId: this.standardId,
-					recognitionOriginal: this.recognitionOriginal,
+					recognitionOriginal,
 					otherUsernames
 					// otherUsernames:uni.getStorageInfoSync('acceptPersonList')
 				}
@@ -429,17 +428,14 @@ export default {
 					if (!res.result.result) {
 						this.showBtns1 = true
 						this.showBtns2 = false
-						this.recognitionOriginal = false
 					} else {
 						if (res.result.result.isApp == -1) {
 							// console.log(111)
 							this.showBtns1 = false
 							this.showBtns2 = true
-							this.recognitionOriginal = true
 						} else {
 							this.showBtns1 = true
 							this.showBtns2 = false
-							this.recognitionOriginal = false
 						}
 					}
 				}

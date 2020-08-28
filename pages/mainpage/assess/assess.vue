@@ -46,8 +46,8 @@
 					</u-col>
 					<u-col span="1">
 						<view style="text-align: center;">
-							<u-icon name="arrow-down" color="#a0cfff" size="28" v-if="item.show1"></u-icon>
-							<u-icon name="arrow-up" color="#a0cfff" size="28" v-else></u-icon>
+							<u-icon name="arrow-down" color="#606266" size="28" v-if="item.show1"></u-icon>
+							<u-icon name="arrow-up" color="#606266" size="28" v-else></u-icon>
 						</view>
 					</u-col>
 				</u-row>
@@ -67,8 +67,8 @@
 						</u-col>
 						<u-col span="1">
 							<view style="text-align: center;">
-								<u-icon name="arrow-down" color="#a0cfff" size="28" v-if="i.show1"></u-icon>
-								<u-icon name="arrow-up" color="#a0cfff" size="28" v-else></u-icon>
+								<u-icon name="arrow-down" color="#606266" size="28" v-if="i.show1"></u-icon>
+								<u-icon name="arrow-up" color="#606266" size="28" v-else></u-icon>
 							</view>
 						</u-col>
 					</u-row>
@@ -83,7 +83,7 @@
 							</u-col>
 							<u-col span="1">
 								<view style="text-align: center;">
-									<u-icon name="arrow-right" color="#a0cfff" size="28"></u-icon>
+									<u-icon name="arrow-right" color="#606266" size="28"></u-icon>
 								</view>
 							</u-col>
 						</u-row>
@@ -103,7 +103,7 @@
 <style lang="less" scoped>
 	.assess_content {
 		height: calc(100vh);
-		background-color: #F5F5F9;
+		background-color: #FFFFFF;
 
 		.projectName {
 			line-height: 80upx;
@@ -116,22 +116,23 @@
 			line-height: 60rpx;
 			display: flex;
 			justify-content: space-between;
+			border-bottom: 1px solid #ccc;
 		}
 
-		.firstmenu {
-			background-color: #fff;
+		// .firstmenu {
+		// 	background-color: #fff;
 
-			// color: #fff;
-			.secmenu {
-				// background-color: #F5F5F9;
-				background-color: #f2f2f2;
+		// 	// color: #fff;
+		// 	.secmenu {
+		// 		// background-color: #F5F5F9;
+		// 		background-color: #f2f2f2;
 
-				.thrdmenu {
-					// background-color: #f2f2f2;
-					// background-color: #000;
-				}
-			}
-		}
+		// 		.thrdmenu {
+		// 			// background-color: #f2f2f2;
+		// 			// background-color: #000;
+		// 		}
+		// 	}
+		// }
 
 		.choseProjectIcon {
 			padding: 10px;
@@ -145,7 +146,7 @@
 		}
 
 		.menuLevel1 {
-			border-bottom: 8rpx solid #F5F5F9;
+			// border-bottom: 8rpx solid #F5F5F9;
 
 			.menuLevel1Content,
 			.menuLevel2Content,
@@ -154,7 +155,7 @@
 				line-height: 80rpx;
 				font-size: 28rpx;
 				background-color: #FFFFFF;
-				border-bottom: 1px solid #ccc;
+				border-bottom: 1px solid #808080;
 				// padding-right: 10rpx;
 			}
 
@@ -162,9 +163,9 @@
 
 				// transition: all 1s;
 				.menuLevel2Content {
-					border-bottom: 1px solid #ccc;
-					background-color: #f2f2f2;
-					// background-color: #F8F4F2;
+					border-bottom: 1px solid #808080;
+					background-color: #ECF5FF;
+					// background-color: #B9D3EE;
 				}
 
 				.chosedMenu {
@@ -175,9 +176,10 @@
 				.menuLevel3 {
 					.menuLevel3Content {
 						background-color: #fff;
-						border-bottom: 1px solid #ccc;
+						border-bottom: 1px solid #808080;
 						font-size: 28rpx;
-						background-color: #f2f2f2;
+						// background-color: #dbf1e1;
+						background-color: #B9D3EE;
 					}
 
 					.chosedMenu {
