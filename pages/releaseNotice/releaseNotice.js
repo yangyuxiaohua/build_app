@@ -41,10 +41,10 @@ export default {
 
 			}
 			let res = await this.$api.POST_getFactoryMenus(param)
-			console.log(res)
+			// console.log(res)
 			this.list = res.result
 			this.ruleValidate(this.list)
-			console.log(this.list)
+			// console.log(this.list)
 
 		},
 		//递归处理数组
@@ -125,15 +125,19 @@ export default {
 				type: 5,
 				userIds: this.userIds
 			}
+			param = {
+				data: JSON.stringify(param)
+			}
+			console.log(param)
 			let res = await this.$api.POST_sendNotice(param)
 			console.log(res)
-			if(res.httpStatus==200){
+			if (res.httpStatus == 200) {
 				this.$refs.uToast.show({
 					title: '发布成功',
 					type: 'success',
 					duration: 2000
 				})
-			}else{
+			} else {
 				this.$refs.uToast.show({
 					title: res.msg,
 					type: 'error',

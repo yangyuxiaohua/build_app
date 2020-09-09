@@ -10,19 +10,19 @@ export default {
 			},
 			list: [{
 				name: '全部',
-				num: '1',
-				type: '0',
+				num: '0',
+				type: 0,
 			}, {
 				name: '公告',
-				num: '1',
+				num: '0',
 				type: 1,
 			}, {
 				name: '通知',
-				num: '1',
+				num: '0',
 				type: 5,
 			}, {
 				name: '提醒',
-				num: '1',
+				num: '0',
 				type: 10,
 			}],
 			ubadgeOffset: [10, 20],
@@ -41,10 +41,13 @@ export default {
 		}
 	},
 	onLoad() {
-		this.tabsChange(0, this.type)
 		this.getRole()
+		// this.tabsChange(this.current, this.type)
 	},
-	onShow() {},
+	onShow() {
+		this.currentPage = 1
+		this.tabsChange(this.current, this.type)
+	},
 	//下拉刷新
 	onPullDownRefresh() {
 		// console.log(1)
@@ -125,6 +128,7 @@ export default {
 		},
 		async getLawsMore() {
 			if (this.flag) {
+				this.flag = false
 				this.loadStatus = 'loading'
 				let param = {
 					size: this.size,
@@ -156,7 +160,6 @@ export default {
 					item.createTime = this.getTime(item.createTime)
 					return item
 				}))
-				this.flag = false
 				// this.list = this.list.concat(res.result.result.map(item => {
 				// 	item.createTime = this.getlTime(item.createTime)
 				// 	return item

@@ -53,15 +53,18 @@ const api = (() => {
 			});
 			let header;
 			if (sid) {
-				if (cur === 'POST_sendNotice') {
-					header = {
-						// 'content-type': 'application/json',
-						'Accept': 'application/json, */*',
-						// 'Access-Token': Token
-						'Content-type': 'application/json', //设置请求参数格式
-						'sid': sid
-					}
-				} else {
+				// if (cur === 'POST_sendNotice') {
+				// 	header = {
+				// 		// 'content-type': 'application/json',
+				// 		'Accept': 'application/json, */*',
+				// 		// 'Access-Token': Token
+				// 		'Content-type': 'application/json', //设置请求参数格式
+				// 		'sid': sid
+				// 	}
+				// 	// data = new String(JSON.stringify(data)).toString()
+				// 	// data = JSON.stringify(data)
+				// 	console.log(data)
+				// } else {
 					header = {
 						// 'content-type': 'application/json',
 						'Accept': 'application/json, */*',
@@ -69,7 +72,7 @@ const api = (() => {
 						'Content-type': 'application/x-www-form-urlencoded', //设置请求参数格式
 						'sid': sid
 					}
-				}
+				// }
 
 			} else {
 				header = {

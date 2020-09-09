@@ -24,6 +24,7 @@ export default {
 		POST_getRecordByChecklistId: 'app/record/getRecordByCheckListId', //获取填写的现场评定记录 - 包含附件
 		POST_updatePwd: 'user/updateUser', //修改密码
 		POST_Register: 'register', //注册
+		POST_SearchRegister: 'register/search', //单位注册验重
 		POST_updeVersion: 'app/auto-update/getAppVersion', //自动更新
 		POST_getUserByAccount: 'app/user/getUserByAccount', //根据账号->查询人员信息
 		POST_pageByCondition: 'tips/policies/pageByCondition', //查询一批政策法规

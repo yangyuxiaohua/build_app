@@ -75,48 +75,71 @@ export default {
 		},
 		//注册
 		async resign() {
-			if (this.showPromptText) {
+			if (this.form.maleSignal) {
+				let param1 = {
+					maleSignal: this.form.maleSignal
+				}
+				let searchRes = await this.$api.POST_SearchRegister(param1)
+				// if(res.)
+				if (!searchRes.result) {
+					if (this.showPromptText) {
+						this.$refs.uToast.show({
+							title: '密码不一致',
+							type: 'warning',
+							duration: 2000
+						})
+					} else {
+						if (this.form.password2) {
+							let param = {
+								factoryName: this.form.factoryName,
+								maleSignal: this.form.maleSignal,
+								type: this.form.type,
+								username: this.form.contactMasterUser,
+								contactMasterUser: this.form.contactMasterUser,
+								contactMasterPhone: this.form.contactMasterPhone,
+								account: this.form.account,
+								password: this.form.password,
+								businessLicense: this.form.businessLicense
+							}
+							let res = await this.$api.POST_Register(param)
+							if (res.httpStatus == 200) {
+								this.title = '注册成功'
+								this.content = '请妥善保管注册账号信息，您需要登录系统PC端完善单位信息，分配本单位的其他用户账号'
+								this.titleStyle = {
+									color: '#19be6b'
+								}
+							}else{
+								this.title = '注册失败'
+								this.content = res.msg
+								this.titleStyle = {
+									color: '#fa3534'
+								}
+							}
+							this.show = true
+						} else {
+							this.$refs.uToast.show({
+								title: '密码不一致',
+								type: 'warning',
+								duration: 2000
+							})
+						}
+					}
+				} else {
+					this.title = '注册失败'
+					this.content = '您注册的单位已存在系统中，请联系系统管理员复核。联系电话 0871——65710577'
+					this.titleStyle = {
+						color: '#fa3534'
+					}
+					this.show = true
+				}
+			} else {
 				this.$refs.uToast.show({
-					title: '密码不一致',
+					title: '请填写统一社会信用代码',
 					type: 'warning',
 					duration: 2000
 				})
-			} else {
-				if (this.form.password2) {
-					let param = {
-						factoryName: this.form.factoryName,
-						maleSignal: this.form.maleSignal,
-						type: this.form.type,
-						username: this.form.contactMasterUser,
-						contactMasterUser: this.form.contactMasterUser,
-						contactMasterPhone: this.form.contactMasterPhone,
-						account: this.form.account,
-						password: this.form.password,
-						businessLicense: this.form.businessLicense
-					}
-					let res = await this.$api.POST_Register(param)
-					if (res.httpStatus == 200) {
-						this.title = '注册成功'
-						this.content = '请妥善保管注册账号信息，您需要登录系统PC端完善单位信息，分配本单位的其他用户账号'
-						this.titleStyle = {
-							color: '#19be6b'
-						}
-					} else {
-						this.title = '注册失败'
-						this.content = '您注册的单位已存在系统中，请联系系统管理员复核。联系电话 0871——65710577'
-						this.titleStyle = {
-							color: '#fa3534'
-						}
-					}
-					this.show = true
-				} else {
-					this.$refs.uToast.show({
-						title: '密码不一致',
-						type: 'warning',
-						duration: 2000
-					})
-				}
 			}
+
 
 
 
